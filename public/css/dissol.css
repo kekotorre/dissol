@@ -3,29 +3,6 @@ img {
   max-width: 100%;
 }
 
-ul.social-buttons {
-  margin-bottom: 0;
-}
-
-ul.social-buttons li a {
-  font-size: 20px;
-  line-height: 40px;
-  display: block;
-  width: 40px;
-  height: 40px;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  transition: all 0.3s;
-  color: white;
-  border-radius: 100%;
-  outline: none;
-  background-color: #222222;
-}
-
-ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons li a:hover {
-  background-color: #fed136;
-}
-
 #carousel-boda img{
   max-width: 100%;
 }
@@ -33,7 +10,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 contacto{
   border: 1px solid;
   border-color: black;
-
 }
 
 #k{
@@ -43,6 +19,7 @@ contacto{
 #borde{
   border: 1px solid;
   border-color: black;
+  height: 700px;
 }
 
 .sidebar{
@@ -54,4 +31,79 @@ contacto{
 .tabla{
   overflow-y: scroll;
   height: 490px;
+}
+
+#img{
+  display: block;
+  max-width: 100%;
+  cursor:pointer;
+}
+#ponerdescuento{
+  z-index: 11;
+  position: absolute;
+  right: 15px;
+  top: 137px;
+}
+#descuento{
+  background-color: #e6bc3f;
+  padding: 12px 0px 1px 0px;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 20px;
+  margin-left: 10px;
+  min-width: 41px;
+  min-height: 40px;
+  text-align: center;
+}
+
+
+#portada{
+  border: 1px solid;
+  border-color: black;
+  height: 500px;
+  width: 500px;
+}
+
+.imagen{
+  width: 100%;
+  height: auto;
+  padding-bottom: 0px;
+}
+
+#ref{
+  border: 1px solid;
+  border-color: black;
+  width: 161px;
+  height: 161px;
+  margin-left: 30px;
+}
+
+
+
+/*panel de administracion*/
+.label{
+    top: -4px;
+    left: 22px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    position: absolute;
+    border-radius: 9999px;
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+.label-danger {
+    background-color: #f9243f;
+}
+
+
+#mensaje tbody, tr:hover{
+  background-color: rgb(162, 204, 235);
 }

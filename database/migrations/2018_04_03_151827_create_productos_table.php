@@ -21,7 +21,7 @@ class CreateProductosTable extends Migration
             //precio producto
             $table->float('precio');
             $table->tinyInteger('descuento');
-            $table->float('cantidad_descuento');
+            $table->float('porcentaje');
             //caracteristicas del producto
             $table->string('formato')->nullable();
             $table->string('medidas');

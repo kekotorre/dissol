@@ -24,22 +24,17 @@ class CreateProductoRequest extends FormRequest
   public function rules()
   {
     return [
-      'referencia' => 'required',
+      'referencia' => 'required|numeric',
       'nombre' => 'required',
       'tipo_producto' => 'required',
       'precio' => 'required',
-      'descuento' => 'required',
-      'cantidad_descuento' => 'required',
-      //caracteristicas del producto
       'formato' => 'required',
       'medidas' => 'required',
       'tipo_papel' => 'required',
       'descripcion' => 'required',
-      //Fotos del producto
-      'portada_principal' => 'required',
-      'portada' => 'required',
-      'dorso' => 'required',
-
+      'portada_principal' => 'required|image|mimes:jpg,png',
+      'portada' => 'required|image|mimes:jpg,png',
+      'dorso' => 'required'
     ];
   }
 }

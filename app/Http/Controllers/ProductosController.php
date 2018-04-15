@@ -42,15 +42,16 @@ class ProductosController extends Controller
   * @param  \Illuminate\Http\Request $request
   * @return \Illuminate\Http\Response
   */
-  public function store(Request $request)
+  public function store(CreateProductoRequest $request)
   {
+    //dd($request);
     //Datos del Producto
     $referencia = $request->input('referencia');
     $nombre = $request->input('nombre');
     $tipo_producto = $request->input('tipo_producto');
     $precio = $request->input('precio');
     $descuento = $request->input('descuento');
-    $cantidad_descuento = $request->input('cantidad_descuento');
+    $porcentaje = $request->input('porcentaje');
     $formato = $request->input('formato');
     $medidas = $request->input('medidas');
     $tipo_papel = $request->input('tipo_papel');
@@ -94,7 +95,7 @@ class ProductosController extends Controller
       'tipo_producto' => $tipo_producto,
       'precio' => $precio,
       'descuento' => $descuento,
-      'cantidad_descuento' => $cantidad_descuento,
+      'porcentaje' => $porcentaje,
       'formato' => $formato,
       'medidas' => $medidas,
       'tipo_papel' => $tipo_papel,
@@ -102,9 +103,9 @@ class ProductosController extends Controller
       'portada_principal' => $ruta_portada_principal,
       'portada' => $ruta_portada,
       'dorso' =>$ruta_dorso,
-      //'interior' => $ruta_interior,
+      //'interior' => $ruta_interior
     ));
-    return redirect()->route('producto.create')->with('notice', 'Se ha subido correctamente el Producto');
+    return redirect()->route('producto.create')->with('notice', 'Se ha guardado correctamente el Producto');
   }
 
   /**

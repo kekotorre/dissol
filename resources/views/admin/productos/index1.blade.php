@@ -18,7 +18,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Referencia</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
@@ -29,7 +28,6 @@
               @foreach ($producto as $producto)
                 {{$producto->count()}}
                 <tr>
-                  <td class="text-center">{{$producto->id_producto}}</td>
                   <td class="text-center">{{$producto->referencia}}</td>
                   <td class="text-center">{{$producto->nombre}}</td>
                   <td class="text-center">{{$producto->precio}} €</td>

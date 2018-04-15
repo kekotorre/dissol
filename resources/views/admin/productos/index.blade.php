@@ -6,7 +6,7 @@
       <div class="card">
         <div class="card-header">
           <div class="row">
-            <div class="col-12">
+            <div class="col-lg-12 col-xs-12">
             <h3 class="col-8 float-left">Listado de productos</h3>
             <form  method="post" class="form-inline col-4 float-rigth" action="{{route('producto.busqueda')}}">
               {{csrf_field()}}
@@ -20,7 +20,6 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
                 <th scope="col">Referencia</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
@@ -31,7 +30,6 @@
               @foreach ($productos as $producto)
                 {{$producto->count()}}
                 <tr>
-                  <td class="text-center">{{$producto->id_producto}}</td>
                   <td class="text-center">{{$producto->referencia}}</td>
                   <td class="text-center">{{$producto->nombre}}</td>
                   <td class="text-center">{{$producto->precio}} €</td>

@@ -5,7 +5,8 @@
   <section class="container">
     <div class="row">
       <div class="col-12 col-md-6" id="contacto">
-        <form action="" class="">
+        <form method="POST" action="{{route('mensaje.store')}}" class="">
+          {{csrf_field()}}
           <div class="form-group row">
             <div class="col-12 col-md-6 mb-2">
               <label for="nombre">Nombre</label>
@@ -45,9 +46,11 @@
           <div class="form-group row">
             <div class="col-12 mb-2">
               <label for="mensaje">Mensaje</label>
-              <textarea class="form-control" rows="6" name="mensaje" id="mensaje" placeholder="Escribenos tu pregunta..."></textarea>
+              <textarea class="form-control" rows="3" name="mensaje" id="mensaje" placeholder="Escribenos tu pregunta..."></textarea>
             </div>
           </div>
+
+          <button type="submit" class="btn btn-primary right">Enviar</button>
 
         </form>
 

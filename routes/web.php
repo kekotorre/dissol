@@ -48,8 +48,12 @@ Route::get('/contacto', function () {
   return view( 'contacto');
 })->name('contacto');
 
+Route::get('/vista', function () {return view('vista');})->name('vista');
+
 //rutas USUARIO
 Route::resource('area-privada', 'UsersController');
+Route::post('mensaje', ['as' => 'mensaje.store', 'uses' => 'MensajesController@store']);
+//Route::post('mensaje', ['as' => 'mensaje.store', 'uses' => 'MensajesController@store']);
 
 
 //rutas ADMIN
@@ -69,6 +73,9 @@ Route::middleware(['admin'])->group(function () {
   Route::post('/producto/busqueda', ['as' => 'producto.busqueda', 'uses' => 'ProductosController@busqueda']);
   Route::get('/producto/activate/{id_producto}', ['as' => 'producto.activate', 'uses' => 'ProductosController@activate']);
   Route::get('/producto/hide/{id_producto}', ['as' => 'producto.hide', 'uses' => 'ProductosController@hide']);
+  //Mensajes
+  Route::get('mensajes', ['as' => 'mensajes.index', 'uses' => 'MensajesController@index']);
+  Route::get('mensaje/{id_mensaje}', ['as' => 'mensaje.show', 'uses' => 'MensajesController@show']);
 
 
 });

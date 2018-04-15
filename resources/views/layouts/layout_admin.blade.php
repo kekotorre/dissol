@@ -17,16 +17,16 @@
   <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
     <a class="navbar-brand" style="color:black;" class="navbar-brand js-scroll-trigger" href="{{route('home')}}">Dashboard</a>
     <ul class="nav navbar nav-top-links ml-auto ">
-      <li class="nav-item ">
-        <a style="color:black;" class="nav-link" href=""><i class="far fa-envelope"></i></a>
+      <li class="nav-item dropdown">
+        <a class="nav-link" href="{{route('mensajes.index')}}"><em class="fas fa-envelope"></em><span class="label label-danger">15</span></a>
       </li>
       <li class="nav-item">
-        <a style="color:black;" class="nav-link" href="">P</a>
+        <a class="nav-link" href=""><i class="fas fa-inbox"></i></a>
       </li>
       <li>
-        <a style="color:black;" class="nav-link" href="{{ route('logout') }}"
+        <a class="nav-link" href="{{ route('logout') }}"
         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        S
+        <i class="fas fa-sign-out-alt"></i>
       </a>
       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
         {{ csrf_field() }}
@@ -58,6 +58,18 @@
             <a class="nav-link" href="{{route('producto.index')}}">
               <span data-feather="shopping-cart"></span>
               Productos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">
+              <span data-feather="shopping-cart"></span>
+              Descuentos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('mensajes.index')}}">
+              <span data-feather="shopping-cart"></span>
+              Mensajes
             </a>
           </li>
         </ul>
