@@ -4,7 +4,6 @@
   <div class="row slaider">
     <div class="col-12">
       <div class="carousel slide" id="carousel-principal" data-ride="carousel">
-
         <ol class="carousel-indicators">
             <?php $i=0; ?>
             @foreach ($carouselP->all() as $carousel)
@@ -41,6 +40,5 @@
         </div>
       </div>
     </div>
-
 
   @stop

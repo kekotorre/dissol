@@ -3,6 +3,8 @@
 @section('contenido')
   <h1>{{$usuario->name}}</h1>
 
+  {{$usuario->direcciones}}
+
   <a href="{{ route('logout') }}"
       onclick="event.preventDefault();
                document.getElementById('logout-form').submit();">

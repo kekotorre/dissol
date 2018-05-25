@@ -19,7 +19,6 @@ contacto{
 #borde{
   border: 1px solid;
   border-color: black;
-  height: 700px;
 }
 
 .sidebar{
@@ -57,26 +56,35 @@ contacto{
 }
 
 
-#portada{
+
+
+.mg{
   border: 1px solid;
   border-color: black;
   height: 500px;
   width: 500px;
 }
 
-.imagen{
-  width: 100%;
-  height: auto;
-  padding-bottom: 0px;
+.mg img{
+  width: 100%
 }
+
+.img1{
+  width: 90%;
+  height: 100%;
+}
+
 
 #ref{
   border: 1px solid;
   border-color: black;
   width: 161px;
   height: 161px;
-  margin-left: 30px;
+  margin-left: 30px; 
 }
+
+/*foto*/
+
 
 
 
