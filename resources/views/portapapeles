@@ -1,0 +1,4 @@
+Route::get('{tipo_producto}',[
+    'as' => 'productos',
+    'uses' => 'TiendaController@producto'
+]);

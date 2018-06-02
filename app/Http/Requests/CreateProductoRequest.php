@@ -32,8 +32,8 @@ class CreateProductoRequest extends FormRequest
       'medidas' => 'required',
       'tipo_papel' => 'required',
       'descripcion' => 'required',
-      'portada_principal' => 'required|image|mimes:jpg,png',
-      'portada' => 'required|image|mimes:jpg,png',
+      'portada_principal' => 'required|image',
+      'portada' => 'required|image',
       'dorso' => 'required'
     ];
   }

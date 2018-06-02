@@ -20,11 +20,11 @@ class ProductosController extends Controller
     return view('admin.productos.index', compact('productos'));
   }
 
-  public function saludo()
+  /*public function saludo()
   {
     $productos = "hola";
     return view('detalles', compact('productos'));
-  }
+}*/
 
   /**
   * Show the form for creating a new resource.
@@ -49,6 +49,7 @@ class ProductosController extends Controller
     $referencia = $request->input('referencia');
     $nombre = $request->input('nombre');
     $tipo_producto = $request->input('tipo_producto');
+    $url = str_slug($request->input('nombre'));
     $precio = $request->input('precio');
     $descuento = $request->input('descuento');
     $porcentaje = $request->input('porcentaje');
@@ -93,6 +94,7 @@ class ProductosController extends Controller
       'referencia' => $referencia,
       'nombre' => $nombre,
       'tipo_producto' => $tipo_producto,
+      'url' => $url,
       'precio' => $precio,
       'descuento' => $descuento,
       'porcentaje' => $porcentaje,

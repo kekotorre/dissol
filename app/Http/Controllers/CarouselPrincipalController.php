@@ -25,7 +25,7 @@ class CarouselPrincipalController extends Controller
     //Mostraremos todo el contenido de la tabla CarouselPrincipal
     $carouselP = CarouselPrincipal::all();
     //return view('index', compact('carouselP'));
-    return view('index', compact('carouselP'));
+    return view('store.index', compact('carouselP'));
   }
   /**
   * Show the form for creating a new resource.

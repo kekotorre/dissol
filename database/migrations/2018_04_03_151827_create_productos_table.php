@@ -18,6 +18,7 @@ class CreateProductosTable extends Migration
             $table->integer('referencia');
             $table->string('nombre');
             $table->string('tipo_producto');
+            $table->string('url');
             //precio producto
             $table->float('precio');
             $table->tinyInteger('descuento');
