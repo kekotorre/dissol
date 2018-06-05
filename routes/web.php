@@ -34,13 +34,38 @@ Route::get('comuniones/{url}','TiendaController@show')->name('detail-comuniones'
 
 
 //rutas USUARIO
-Route::resource('area-privada', 'UsersController');
+Route::middleware(['auth'])->group(function () {
+    Route::get('area-privada', function(){
+        return view('usuarios.index');
+    })->name('area-privada');
+
+    Route::get('datos-personales', function(){
+        return view('usuarios.datos-personales');
+    })->name('datos-personales');
+
+    Route::get('datos-de-entrega', function(){
+        return view('usuarios.datos-de-entrega');
+    })->name('datos-entrega');
+});
 
 //Rutas Carrito
 Route::get('/carrito', 'CartController@show')->name('carrito');
 Route::get('carrito/add/{producto}','CartController@add')->name('carrito-add');
 Route::get('carrito/delete/{producto}','CartController@delete')->name('carrito-delete');
 Route::get('carrito/delete/{producto}/{quantity}','CartController@update')->name('carrito-update');
+
+//enviamos nuestro pedido a PayPal
+Route::get('payment', array(
+    'as' => 'payment',
+    'uses' => 'PaypalController@postPayment'
+));
+
+//Paypal redirecciona a esta ruta
+Route::get('payment/status', array(
+    'as' => 'payment.status',
+    'uses' => 'PaypalController@getPaymentStatus'
+));
+
 
 //Datos de entrega
 Route::get('datos-de-entrega',[
@@ -56,8 +81,8 @@ Route::get('datos-de-entrega',[
 
 //Route::get('{tipo_producto}', 'TiendaController@producto')->name('bodas');
 /*Route::get('{tipo_producto}',[
-    'as' => 'productos',
-    'uses' => 'TiendaController@producto'
+'as' => 'productos',
+'uses' => 'TiendaController@producto'
 ]);*/
 
 //Route::get('/home', 'HomeController@index')->name('home');
@@ -69,14 +94,14 @@ return view('index', compact('carouselP'));
 
 //bodas
 /*Route::get('/bodas', function () {
-    return view('bodas');
+return view('bodas');
 })->name('bodas');*/
 
 //comuniones
 //Route::get('/comuniones', 'TiendaController@comunion')->name('comuniones');
 //natalicios
 /*Route::get('/natalicios', function () {
-    return view( 'natalicios');
+return view( 'natalicios');
 })->name('natalicios');*/
 //detalles
 /*Route::get('/detalles', function () {

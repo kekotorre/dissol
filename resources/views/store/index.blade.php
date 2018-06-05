@@ -1,6 +1,9 @@
 @extends('layouts/layout')
 
 @section('contenido')
+    @if(session()->has('compra'))
+        <div class="alert alert-success">{{ session('compra') }}</div>
+      @endif
   <div class="row slaider">
     <div class="col-12">
       <div class="carousel slide" id="carousel-principal" data-ride="carousel">

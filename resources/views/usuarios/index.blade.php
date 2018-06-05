@@ -1,18 +1,14 @@
 @extends('layouts/layout')
 
 @section('contenido')
-  <h1>{{$usuario->name}}</h1>
 
-  {{$usuario->direcciones}}
+    <div class="container">
+        <div class="row">
+            @include('usuarios.menu-vertical')
+            <div class="col-9" style="border: 1px solid grey">
+                <h3>Resumen de Pedidos de {{Auth::user()->name}} </h3>
 
-  <a href="{{ route('logout') }}"
-      onclick="event.preventDefault();
-               document.getElementById('logout-form').submit();">
-      Logout
-  </a>
-
-  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-      {{ csrf_field() }}
-  </form>
-
+            </div>
+        </div>
+    </div>
 @stop

@@ -44,7 +44,7 @@
                                 <li><a style="color:black;" class="nav-link js-scroll-trigger" href="{{ route('login') }}">Iniciar Sesión</a></li>
                             @else
                                 <li>
-                                    <a style="color:black;" class="nav-link js-scroll-trigger" href="{{ route('area-privada.show', $id = auth()->user()->id) }}">
+                                    <a style="color:black;" class="nav-link js-scroll-trigger" href="{{ route('area-privada') }}">
                                         {{auth()->user()->name}}
                                     </a>
                                 </li>
