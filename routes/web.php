@@ -35,6 +35,8 @@ Route::get('personalizar/{id}', 'TiendaController@personalizar')->name('personal
 
 
 
+
+
 //rutas USUARIO
 Route::middleware(['auth'])->group(function () {
     Route::get('area-privada', function(){
@@ -155,5 +157,7 @@ Route::middleware(['admin'])->group(function () {
     //Pedido
     Route::resource('pedidos', 'PedidosController');
     Route::get('/detalle-del-pedido/{id}', 'PedidosController@detallePedido')->name('detalle-pedido');
+    Route::get('{num_pedido}', 'PedidosController@detallePdf')->name('detallePdf');
+    Route::get('composicion/{id_composicion}', 'PedidosController@composicionPdf')->name('composicionPdf');
 
 });

@@ -33,12 +33,14 @@
                                 <td class="text-center"><img style="width:50px;" src="../{{$item->producto->portada_principal}}"></td>
                                 <td class="text-center">{{$item->producto->referencia}}</td>
                                 <td class="text-center">{{$item->cantidad}}</td>
-                                <td class="text-center">Descargar</td>
+                                <td class="text-center"><a href="{{route('composicionPdf', $item->id)}}"> Descargar</a></td>
                             </tr>
                         @endforeach
                     @endforeach
                 </tbody>
             </table>
         </div>
+
+        <a href="{{route('detallePdf', $pedido->numero_pedido)}}"> Descargar</a>
     </div>
 @stop
