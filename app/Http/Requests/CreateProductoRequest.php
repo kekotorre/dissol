@@ -34,7 +34,6 @@ class CreateProductoRequest extends FormRequest
       'descripcion' => 'required',
       'portada_principal' => 'required|image',
       'portada' => 'required|image',
-      'dorso' => 'required'
     ];
   }
 }

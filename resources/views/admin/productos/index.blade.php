@@ -24,30 +24,31 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Visible</th>
+                <th scope="col">Editar</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($productos as $producto)
-                {{$producto->count()}}
                 <tr>
                   <td class="text-center">{{$producto->referencia}}</td>
                   <td class="text-center">{{$producto->nombre}}</td>
                   <td class="text-center">{{$producto->precio}} €</td>
                   <td class="text-center">
                     @if($producto->visible)
-                      <a href="{{ route('producto.hide', $producto->id_producto) }}">
+                      <a href="{{ route('producto.hide', $producto->id) }}">
                         <button class="btn btn-success btn-xs">
                           Activo
                         </button>
                       </a>
                     @else
-                      <a href="{{ route('producto.activate', $producto->id_producto) }}">
+                      <a href="{{ route('producto.activate', $producto->id) }}">
                         <button class="btn btn-danger btn-xs">
                           Inactivo
                         </button>
                       </a>
                     @endif
                   </td>
+                  <td class="text-center"><a href="{{route('producto.edit', $producto->id)}}"><i class="fas fa-edit"></i></a></td>
                 </tr>
               @endforeach
 

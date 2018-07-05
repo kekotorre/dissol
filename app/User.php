@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Pedido;
+
+
 class User extends Authenticatable
 {
     use Notifiable;
-
-    protected $primaryKey = "id";
 
     /**
      * The attributes that are mass assignable.
@@ -29,8 +30,13 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function direcciones()
+    public function address()
     {
-      return $this->belongsToMany(Direccion::class);
+      return $this->hasMany('App\Direccion', 'user_id');
+    }
+
+    public function pedidos()
+    {
+      return $this->hasMany(Pedido::class);
     }
 }

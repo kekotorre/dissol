@@ -1,0 +1,20 @@
+a{
+    color: black;
+}
+
+#menu{
+    padding: 5px;
+    background-color: rgb(242, 246, 249);
+}
+
+.cuadrado{
+    height: 36px;
+    width: 36px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1px;
+    background-color: rgb(242, 243, 246);
+    margin: 5px;
+
+
+}

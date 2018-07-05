@@ -14,15 +14,15 @@ class CreateProductosTable extends Migration
     public function up()
     {
         Schema::create('productos', function (Blueprint $table) {
-            $table->increments('id_producto');
+            $table->increments('id');
             $table->integer('referencia');
             $table->string('nombre');
             $table->string('tipo_producto');
             $table->string('url');
             //precio producto
-            $table->float('precio');
-            $table->tinyInteger('descuento');
-            $table->float('porcentaje');
+            $table->decimal('precio',2);
+            $table->boolean('descuento')->default(false);
+            $table->decimal('porcentaje',2)->nullable();;
             //caracteristicas del producto
             $table->string('formato')->nullable();
             $table->string('medidas');
@@ -31,9 +31,18 @@ class CreateProductosTable extends Migration
             //Fotos del producto
             $table->string('portada_principal');
             $table->string('portada');
-            $table->string('dorso');
+            $table->string('dorso')->nullable();
             $table->string('interior')->nullable();
 
+            //Fotos de alta calidad del productos
+            $table->string('portada_high');
+            $table->string('dorso_high')->nullable();
+            $table->string('interior_high')->nullable();
+
+            //Composición de ejemplo del productos
+            $table->json('composicion_ejemplo');
+
+            //Estado del producto en venta
             $table->boolean('visible')->default(true);
 
             $table->timestamps();

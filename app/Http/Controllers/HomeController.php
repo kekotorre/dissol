@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Pedido;
+use App\User;
+use App\Composicion;
 class HomeController extends Controller
 {
     /**
@@ -24,6 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin/home');
+        //$user =  User::all();
+        $pedidos =  Pedido::all();
+        //$composicion = Composicion::all();
+        return view('admin.home', compact('pedidos'));
     }
 }

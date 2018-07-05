@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Pacifico");
+
 img {
   max-height: 100%;
   max-width: 100%;
@@ -112,6 +114,11 @@ contacto{
 }
 
 
-#mensaje tbody, tr:hover{
+/*#mensaje tbody, tr:hover{
   background-color: rgb(162, 204, 235);
-}
+  cursor: pointer;
+}*/
+
+
+
+/* PIZARRA CANVAS */

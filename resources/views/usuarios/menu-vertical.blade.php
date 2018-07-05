@@ -8,10 +8,10 @@
             <a class="nav-link active" href="{{route('datos-personales')}}">Datos Personales</a>
         </li>
         <li class="nav-item"  style="border-bottom: 1px solid grey">
-            <a class="nav-link" href="">Datos de Entrega</a>
+            <a class="nav-link" href="{{route('datos_entrega')}}">Datos de Entrega</a>
         </li>
         <li class="nav-item"  style="border-bottom: 1px solid grey">
-            <a href="{{ route('logout') }}"
+            <a class="nav-link" href="{{ route('logout') }}"
             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">Salir</a>
 

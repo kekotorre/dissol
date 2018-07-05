@@ -11,7 +11,7 @@ class DeleteColumToUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    /*public function up()
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn(['direccion','cod_postal','pais','poblacion','provincia']);
@@ -23,10 +23,10 @@ class DeleteColumToUsersTable extends Migration
      *
      * @return void
      */
-    public function down()
+    /*public function down()
     {
         Schema::table('users', function (Blueprint $table) {
 
         });
-    }
+    }*/
 }

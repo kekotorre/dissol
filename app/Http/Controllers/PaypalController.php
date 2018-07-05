@@ -26,8 +26,9 @@ use PayPal\Api\ExecutePayment;
 use PayPal\Api\PaymentExecution;
 use PayPal\Api\Transaction;
 
-use App\Order;
-use App\OrderItem;
+
+use App\Pedido;
+use App\Composicion;
 
 
 class PaypalController extends Controller
@@ -69,9 +70,9 @@ class PaypalController extends Controller
         $details = new Details();
         //costo por envio
         $details->setSubtotal($subtotal)
-        ->setShipping(100);
+        ->setShipping(4);
 
-        $total = $subtotal + 100;
+        $total = $subtotal + 4;
 
         $amount = new Amount();
         $amount->setCurrency($currency)
@@ -116,7 +117,7 @@ class PaypalController extends Controller
 
         // add payment ID to session
         \Session::put('paypal_payment_id', $payment->getId());
-//dd($payment->getId());
+        //dd($payment->getId());
         if(isset($redirect_url)) {
             // redirect to paypal
             return \Redirect::away($redirect_url);
@@ -141,12 +142,12 @@ class PaypalController extends Controller
 
         //if (empty(\Input::get('PayerID')) || empty(\Input::get('token'))) {
         if (empty($payerId) || empty($token)) {
-            return \Redirect::route('home')
+            return \Redirect::route('index')
             ->with('message', 'Hubo un problema al intentar pagar con Paypal');
         }
 
         $payment = Payment::get($payment_id, $this->_api_context);
-//dd($payment_id);
+        //dd($payment_id);
         // PaymentExecution object includes information necessary
         // to execute a PayPal account payment.
         // The payer_id is added to the request query parameters
@@ -167,9 +168,9 @@ class PaypalController extends Controller
             // Enviar correo a admin
             // Redireccionar
 
-            //$this->saveOrder(\Session::get('cart'));
+            $this->savePedido(\Session::get('cart'));
 
-            //\Session::forget('cart');
+            \Session::forget('cart');
 
 
             return \Redirect::route('index')
@@ -180,31 +181,52 @@ class PaypalController extends Controller
     }
 
 
-    private function saveOrder($cart)
+    private function savePedido($cart)
     {
         $subtotal = 0;
-        foreach($cart as $item){
-            $subtotal += $item->price * $item->quantity;
+        foreach($cart as $item1){
+            //$subtotal += $item->precio * $item->quantity;
+            $subtotal += $item1->precio * $item1->quantity;
         }
 
-        $order = Order::create([
-            'subtotal' => $subtotal,
-            'shipping' => 100,
-            'user_id' => \Auth::user()->id
+        $total = $subtotal + 4;
+        //dd($total);
+        //dd( \Auth::user()->id);
+
+        $num_pedido = rand ( 100, 100000 );
+        //dd($num_pedido);
+        //dd($cart);
+
+        $pedido = Pedido::create([
+            'numero_pedido' => $num_pedido,
+            'precio_total' => $total,
+            'user_id' => \Auth::user()->id,
         ]);
 
         foreach($cart as $item){
-            $this->saveOrderItem($item, $order->id);
+            $this->saveComposicion($item, $pedido->id);
         }
     }
 
-    private function saveOrderItem($item, $order_id)
+    private function saveComposicion($item, $pedido_id)
     {
-        OrderItem::create([
-            'quantity' => $item->quantity,
-            'price' => $item->price,
-            'product_id' => $item->id,
-            'order_id' => $order_id
+        //dd($factura_id);
+        $jSon = '{
+            "glossary": {
+                "title": "example glossary",
+                "GlossSee": "markup"
+            }
+        }';
+        Composicion::create([
+            'cantidad' => $item->quantity,
+            'precio_unidad' => $item->precio,
+            'precio_total' => $item->precio * $item->quantity,
+            'composicion' => $item->composition,
+            'pedido_id' => $pedido_id,
+            'producto_id' => $item->id
+
+            //json(composicion)
+
         ]);
     }
 }

@@ -6,13 +6,27 @@
             @include('usuarios.menu-vertical')
             <div class="col-9">
                 <h3>Datos de Entrega </h3>
-                <table class="table table-striped ">
-                    <tr><td>Nombre:</td><td>{{ Auth::user()->name }}</td></tr>
-                    <tr><td>1º Apellido:</td><td>{{ Auth::user()->apellido_1 }}</td></tr>
-                    <tr><td>2º Apellido:</td><td>{{ Auth::user()->apellido_2 }}</td></tr>
-                    <tr><td>DNI:</td><td>{{ Auth::user()->dni }}</td></tr>
-                    <tr><td>Teléfono fijo:</td><td>{{ Auth::user()->fijo }}</td></tr>
-                    <tr><td>Teléfono movil:</td><td>{{ Auth::user()->movil }}</td></tr>
+                <table class="table table-sm text-center">
+                    <thead>
+                        <tr>
+                            <th>Dirección</th>
+                            <th>País</th>
+                            <th>Provincia</th>
+                            <th>Población</th>
+                            <th>Código Postal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(Auth::user()->address as $item)
+                            <tr>
+                                <td><p>{{$item->direccion}}</p></td>
+                                <td><p>{{$item->pais}}</p></td>
+                                <td><p>{{$item->provincia}}</p></td>
+                                <td><p>{{$item->poblacion}}</p></td>
+                                <td><p>{{$item->cod_postal}}</p></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
             </div>
         </div>

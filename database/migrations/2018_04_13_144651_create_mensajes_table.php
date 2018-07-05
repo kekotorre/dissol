@@ -21,6 +21,8 @@ class CreateMensajesTable extends Migration
       $table->string('asunto');
       $table->text('mensaje');
       $table->boolean('visible')->default(true);
+      //sin relacion 
+      $table->integer('user_id')->unsigned();
       $table->timestamps();
     });
   }

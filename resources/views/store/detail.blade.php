@@ -60,7 +60,7 @@
                 </div>
                 <div class="row">
                     <div class="col-7">
-                        <p class="h1">{{$producto->precio}}€</p>
+                        <p class="h1">{{number_format($producto->precio, 2, ',', '.')}}€</p>
                     </div>
                 </div>
                 <div class="row">
@@ -79,14 +79,15 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-7">
-                        <p class="h1">{{$producto->descripcion}}€</p>
+                    <div class="col-9">
+                        <p class="">{{$producto->descripcion}}</p>
                     </div>
                 </div>
                 <br /></br></br>
                 <div class="row">
                     <div class="col-7">
-                        <a href="{{route('carrito-add', $producto->id_producto)}}" class="btn btn-success btn-lg">Comprar</a>
+                        <a href="{{route('carrito-add', $producto->id)}}" class="btn btn-success btn-lg">Comprar</a>
+                        <a href="{{route('personalizar', $producto->id)}}" class="btn btn-success btn-lg">Personalizar</a>
                     </div>
                 </div>
             </div>

@@ -5,20 +5,17 @@
         <div class="row">
             <div class="col-12">
                 <div class="row text-center">
-                    <div class="col-4">
+                    <div class="col-6">
                         <h5>Cesta</h5>
                     </div>
-                    <div class="col-4">
-                        <h5>Datos de Entrega</h5>
-                    </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <h5>Resumen</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="progress ">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100" style="width: 33.3%"></div>
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
                         </div>
                     </div>
                 </div>
@@ -53,20 +50,20 @@
                                         min="10"
                                         max="999"
                                         value="{{ $item->quantity }}"
-                                        id="product_{{ $item->id_producto }}"
+                                        id="product_{{ $item->id }}"
                                         >
                                         <a
                                         href=""
                                         class="btn-update-item"
-                                        data-href="{{route('carrito-update', [$item->id_producto, ''])}}"
-                                        data-id = "{{ $item->id_producto }}"
+                                        data-href="{{route('carrito-update', [$item->id, ''])}}"
+                                        data-id = "{{ $item->id }}"
                                         >
                                         <i class="fas fa-sync" ></i>
                                     </a>
                                 </td>
-                                <td>{{$item->precio}}€</td>
-                                <td>{{number_format($item->precio * $item->quantity,2)}}€</td>
-                                <td><a href="{{route('carrito-delete', $item->id_producto)}}" class=""><i class="fas fa-trash" style="color:red;"></i></a></td>
+                                <td>{{number_format($item->precio, 2, ',', '.')}}€</td>
+                                <td>{{number_format($item->precio * $item->quantity, 2, ',', '.')}}€</td>
+                                <td><a href="{{route('carrito-delete', $item->id)}}" class=""><i class="fas fa-trash" style="color:red;"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -75,7 +72,7 @@
                 <div class="row">
                     <div class="col-9"></div>
                     <div class="col-3">
-                        <h5>Total: {{number_format($total)}}€</h5>
+                        <h5>Total: {{number_format($total, 2, ',', '.')}}€</h5>
                         <p>(Impuestos Incluidos)</p>
                     </div>
                 </div>
@@ -91,7 +88,7 @@
                 </div>
                 <div class="col-6"></div>
                 <div class="col-3">
-                    <a href="{{route('entrega')}}" class="btn btn-primary @if (count($cart)===0) disabled @endif ">Continuar</a>
+                    <a href="{{route('resumen')}}" class="btn btn-primary @if (count($cart)===0) disabled @endif ">Continuar</a>
                     </div>
                 </div>
             </div>

@@ -20,6 +20,11 @@ class CreateDireccionesTable extends Migration
             $table->string('provincia');
             $table->string('poblacion');
             $table->integer('cod_postal');
+            //Relacion (1:n) => usuario:direcciones
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
             $table->timestamps();
         });
     }

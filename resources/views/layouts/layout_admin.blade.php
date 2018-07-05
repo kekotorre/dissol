@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1-0, minimum-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- css Bootstrap -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <!-- css DISSOL -->
   <link href="{{ asset('css/dissol.css') }}" rel="stylesheet">
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/canvasjs/1.7.0/canvasjs.js"></script>
   <!-- font icons -->
   <!--<link rel="stylesheet" href="assets/css/font-awesome.min.css"  />-->
   <title>DISSOL</title>
@@ -58,6 +61,12 @@
             <a class="nav-link" href="{{route('producto.index')}}">
               <span data-feather="shopping-cart"></span>
               Productos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('pedidos.index')}}">
+              <span data-feather="shopping-cart"></span>
+              Pedidos
             </a>
           </li>
           <li class="nav-item">

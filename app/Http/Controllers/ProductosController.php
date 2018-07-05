@@ -61,6 +61,7 @@ class ProductosController extends Controller
     //Imagenes
     $file_portada_principal = $request->file('portada_principal');
     $file_portada = $request->file('portada');
+    $file_dorso = "";
     $file_dorso = $request->file('dorso');
     //$file_interior = $request->file('interior');
 
@@ -73,19 +74,19 @@ class ProductosController extends Controller
     //Extraemos el nombre de la Imagen
     $fileName_portada_principal = $file_portada_principal->getClientOriginalName();
     $fileName_portada = $file_portada->getClientOriginalName();
-    $fileName_dorso = $file_dorso->getClientOriginalName();
+    //$fileName_dorso = $file_dorso->getClientOriginalName();
     //$fileName_interior = $file_interior->getClientOriginalName();
 
     //Guardamos las Imagenes en el Servidor
     $file_portada_principal->move($path, $fileName_portada_principal);
     $file_portada->move($path, $fileName_portada);
-    $file_dorso->move($path, $fileName_dorso);
+    //$file_dorso->move($path, $fileName_dorso);
     //$file_interior->move($path, $fileName_interior);
 
     //Composicion de la ruta
     $ruta_portada_principal = $path . '/' . $fileName_portada_principal;
     $ruta_portada = $path . '/' . $fileName_portada;
-    $ruta_dorso = $path . '/' . $fileName_dorso;
+    //$ruta_dorso = $path . '/' . $fileName_dorso;
     //$ruta_interior = $path . '/' . $fileName_interior;
 
     //dd($ruta_interior);
@@ -104,7 +105,7 @@ class ProductosController extends Controller
       'descripcion' => $descripcion,
       'portada_principal' => $ruta_portada_principal,
       'portada' => $ruta_portada,
-      'dorso' =>$ruta_dorso,
+      //'dorso' =>$ruta_dorso,
       //'interior' => $ruta_interior
     ));
     return redirect()->route('producto.create')->with('notice', 'Se ha guardado correctamente el Producto');
@@ -136,7 +137,8 @@ class ProductosController extends Controller
   */
   public function edit($id)
   {
-    //
+      $producto = Producto::findOrFail($id);
+      return view('admin.productos.edit', compact('producto'));
   }
 
   /**
@@ -148,7 +150,20 @@ class ProductosController extends Controller
   */
   public function update(Request $request, $id)
   {
-    //
+    $producto = Producto::findOrFail($id);
+
+    $producto->nombre = $request->nombre;
+    $producto->referencia = $request->referencia;
+    $producto->precio = $request->precio;
+    $producto->formato = $request->formato;
+    $producto->medidas = $request->medidas;
+    $producto->tipo_papel = $request->tipo_papel;
+    $producto->descripcion = $request->descripcion;
+
+    $producto->save();
+
+    return redirect(route('producto.edit', $producto->id));
+    //return view('admin.productos.edit', compact('producto'));
   }
 
   /**
@@ -162,19 +177,19 @@ class ProductosController extends Controller
     //
   }
 
-  public function hide($id_producto)
+  public function hide($id)
   {
     //Función con la que actualizamos el valor del campo visble a 0
     //dd(Producto::findOrFail($id_producto));
-    $producto = Producto::all()->find($id_producto);
+    $producto = Producto::all()->find($id);
     $producto->update(array('visible' => '0'));
     return redirect()->route('producto.index');
   }
 
-  public function activate($id_producto)
+  public function activate($id)
   {
     //Función con la que actualizamos el valor del campo visble a 0
-    $producto = Producto::all()->find($id_producto);
+    $producto = Producto::all()->find($id);
     $producto->update(array('visible' => '1'));
     return redirect()->route('producto.index');
   }

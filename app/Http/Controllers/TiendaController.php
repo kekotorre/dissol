@@ -39,7 +39,12 @@ class TiendaController extends Controller
 
     public function show($url){
         $producto = Producto::where('url', $url)->first();
-
         return view('store.detail', compact('producto'));
+    }
+
+    public function personalizar($id){
+        $producto = Producto::findOrFail($id);
+
+        return view('store.herramienta.personalizar2', compact('producto'));
     }
 }

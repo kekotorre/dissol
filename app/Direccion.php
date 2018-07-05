@@ -14,4 +14,8 @@ class Direccion extends Model
                             'poblacion',
                             'cod_postal',
                           ];
+
+    public function user(){
+         return $this->belongsTo('App\User');
+    }
 }

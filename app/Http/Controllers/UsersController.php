@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 Use App\User;
+Use App\App\Direccion;
 
 use Illuminate\Http\Request;
 
@@ -48,8 +49,8 @@ class UsersController extends Controller
   */
   public function show($id)
   {
-    $usuario = User::findOrFail($id);
-    return view('usuarios.index', compact('usuario'));
+    //$usuario = User::findOrFail($id);
+    //return view('usuarios.index', compact('usuario'));
   }
 
   /**
@@ -58,9 +59,9 @@ class UsersController extends Controller
   * @param  int  $id
   * @return \Illuminate\Http\Response
   */
-  public function edit($id)
+  public function edit()
   {
-    //
+      return view('usuarios.edit');
   }
 
   /**
@@ -72,7 +73,17 @@ class UsersController extends Controller
   */
   public function update(Request $request, $id)
   {
-    //
+    $user = User::findOrFail($id);
+
+    $user->name = $request->name;
+    $user->apellido_1 = $request->apellido_1;
+    $user->apellido_2 = $request->apellido_2;
+    $user->movil = $request->movil;
+
+    $user->save();
+
+    return redirect('datos-personales');
+
   }
 
   /**
@@ -85,4 +96,6 @@ class UsersController extends Controller
   {
     //
   }
+
+ 
 }

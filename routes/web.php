@@ -29,6 +29,8 @@ Route::post('mensaje', ['as' => 'mensaje.store', 'uses' => 'MensajesController@s
 Route::get('bodas/{url}','TiendaController@show')->name('detail-bodas');
 Route::get('comuniones/{url}','TiendaController@show')->name('detail-comuniones');
 
+Route::get('personalizar/{id}', 'TiendaController@personalizar')->name('personalizar');
+
 
 
 
@@ -45,12 +47,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('datos-de-entrega', function(){
         return view('usuarios.datos-de-entrega');
-    })->name('datos-entrega');
+        //return view('usuarios.datos-de-entrega');
+    })->name('datos_entrega');
+
+    Route::get('datos-personales/edit', 'UsersController@edit')->name('user.edit');
+    Route::put('datos-personales/{id}', 'UsersController@update')->name('user.update');
+
+    //Route::get('datos-de-entrega', 'UsersController@derecciones')->name('datos-entrega');
 });
 
 //Rutas Carrito
 Route::get('/carrito', 'CartController@show')->name('carrito');
-Route::get('carrito/add/{producto}','CartController@add')->name('carrito-add');
+Route::post('carrito/add/{producto}','CartController@add')->name('carrito-add');
 Route::get('carrito/delete/{producto}','CartController@delete')->name('carrito-delete');
 Route::get('carrito/delete/{producto}/{quantity}','CartController@update')->name('carrito-update');
 
@@ -68,12 +76,19 @@ Route::get('payment/status', array(
 
 
 //Datos de entrega
-Route::get('datos-de-entrega',[
+Route::get('entrega',[
     'middleware' => 'auth',
     'as' => 'entrega',
     function(){
         return view('carrito.direccion');
     }
+]);
+
+//Pago
+Route::get('resumen',[
+    'middleware' => 'auth',
+    'as' => 'resumen',
+    'uses' => 'CartController@resumen'
 ]);
 
 
@@ -137,5 +152,8 @@ Route::middleware(['admin'])->group(function () {
     //Mensajes
     Route::get('mensajes', ['as' => 'mensajes.index', 'uses' => 'MensajesController@index']);
     Route::get('mensaje/{id_mensaje}', ['as' => 'mensaje.show', 'uses' => 'MensajesController@show']);
+    //Pedido
+    Route::resource('pedidos', 'PedidosController');
+    Route::get('/detalle-del-pedido/{id}', 'PedidosController@detallePedido')->name('detalle-pedido');
 
 });

@@ -5,8 +5,8 @@
         <div class="row">
             @foreach ($bodas as $tarjeta)
                 <div class="col-xs-12 col-sm-6 col-lg-3">
-                    <div class="card" style="">
-                        <a href="{{route('detail-comuniones', $tarjeta->url)}}">
+                    <div class="card mb-5" style="">
+                        <a href="{{route('detail-bodas', $tarjeta->url)}}">
                             <img class="card-img-top" src="{{$tarjeta->portada_principal}}" alt="">
                         </a>
                         <div class="card-body">
@@ -18,7 +18,7 @@
                                     -
                                     <span class="card-text badge badge-warning"> 0,38€</span>
                                 @else
-                                    <span class="card-text badge badge-light" style=" color:black"> {{number_format($tarjeta->precio)}}€</span>
+                                    <span class="card-text badge badge-light" style=" color:black"> {{number_format($tarjeta->precio, 2, ',', '.')}}€</span>
                                 @endif
                             </h4>
 

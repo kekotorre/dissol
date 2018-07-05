@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDireccionUserTable extends Migration
+class CreateCodigoDescuentosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateDireccionUserTable extends Migration
      */
     public function up()
     {
-        Schema::create('direccion_user', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->integer('direccion_id')->unsigned();
+        Schema::create('codigo_descuentos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('codigo', 6);
+            $table->decimal('porcentaje');
+            $table->integer('duracion')->unsigned();
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateDireccionUserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('direccion_user');
+        Schema::dropIfExists('codigo_descuentos');
     }
 }

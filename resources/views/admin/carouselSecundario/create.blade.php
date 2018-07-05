@@ -9,9 +9,10 @@
         </div>
         <div class="card-body">
           @if(Session::has('notice'))
-            <p> <strong> {{ Session::get('notice') }} </strong> </p>
+            <div class="alert alert-success"><h3>{{ Session::get('notice') }}</h3></div>
           @endif
           <form method="post" action="{{route('carousel-secundario.store')}}" enctype="multipart/form-data">
+        
             {{csrf_field()}}
             @include('admin.form.form_carousel')
           </form>
