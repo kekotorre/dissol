@@ -93,7 +93,7 @@ contacto{
 /*panel de administracion*/
 .label{
     top: -4px;
-    left: 22px;
+    left: 29px;
     padding-top: 4px;
     padding-bottom: 4px;
     position: absolute;
@@ -113,6 +113,24 @@ contacto{
     background-color: #f9243f;
 }
 
+.label1{
+    top: 5px;
+    left: 93px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    position: absolute;
+    border-radius: 9999px;
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
 
 /*#mensaje tbody, tr:hover{
   background-color: rgb(162, 204, 235);

@@ -40,6 +40,7 @@ class CartController extends Controller
         $producto->quantity = 10;
         $producto->composition = $request->input('compos');
 
+
         $cart[$producto->id] = $producto;
         //dd($cart);
         \Session::put('cart', $cart);

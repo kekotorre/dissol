@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 //use Barryvdh\DomPDF\Facade;
 
@@ -19,6 +20,13 @@ class PedidosController extends Controller
 
     public function detallePedido($numero_pedido){
         $pedido = Pedido::where('numero_pedido', $numero_pedido)->get();
+
+        foreach($pedido as $item){
+            $pedido1 = Pedido::find($item->id);
+            $pedido1->pendiente = '0';
+            $pedido1->save();
+        }
+
         return view('admin.pedidos.detalle-pedido', compact('pedido'));
     }
 

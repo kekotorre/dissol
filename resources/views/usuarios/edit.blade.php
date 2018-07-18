@@ -21,6 +21,7 @@
                             <button type="submit" class="btn btn-success" name="button">Guardar</button>
                         </div>
                     </div>
+                </form>
                 </div>
             </div>
         </div>

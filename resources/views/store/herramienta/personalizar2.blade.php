@@ -139,7 +139,7 @@
 
 var canvas = new fabric.Canvas('pizarra');
 //var canvas1 = new fabric.Canvas('pizarra1');
-canvas.setBackgroundImage('{{"../" . $producto->portada}}', canvas.renderAll.bind(canvas));
+//canvas.setBackgroundImage('{{"../" . $producto->portada}}', canvas.renderAll.bind(canvas));
 //canvas1.setBackgroundImage('{{"../" . $producto->portada}}', canvas.renderAll.bind(canvas1));
 
 

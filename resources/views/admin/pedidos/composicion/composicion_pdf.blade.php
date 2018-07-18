@@ -53,7 +53,7 @@
         </header>
 
                     <canvas id="pizarra" height="560" width="1105" style="border: 2px solid red;"></canvas>
-    
+
         <footer>
             <table>
                 <tr>

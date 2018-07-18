@@ -14,7 +14,7 @@
                     <tr><td>Dirección de Envio</td><td>{{$item->direccion_envio}}</td></tr>
                     <tr><td></td><td></td></tr>
                 </table>
-            @endforeach
+
 
             <h3>Datos del Pedido</h3>
             <table class="table table-sm" style="overflow: scroll;">
@@ -27,13 +27,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pedido as $pedido)
-                        @foreach ($pedido->composicion as $item)
+
+                        @foreach ($item->composicion as $item1)
                             <tr>
-                                <td class="text-center"><img style="width:50px;" src="../{{$item->producto->portada_principal}}"></td>
-                                <td class="text-center">{{$item->producto->referencia}}</td>
-                                <td class="text-center">{{$item->cantidad}}</td>
-                                <td class="text-center"><a href="{{route('composicionPdf', $item->id)}}"> Descargar</a></td>
+                                <td class="text-center"><img style="width:50px;" src="../{{$item1->producto->portada_principal}}"></td>
+                                <td class="text-center">{{$item1->producto->referencia}}</td>
+                                <td class="text-center">{{$item1->cantidad}}</td>
+                                <td class="text-center"><a href="{{route('composicionPdf', $item1->id)}}"> Descargar</a></td>
                             </tr>
                         @endforeach
                     @endforeach
@@ -41,6 +41,6 @@
             </table>
         </div>
 
-        <a href="{{route('detallePdf', $pedido->numero_pedido)}}"> Descargar</a>
+        <a href="{{route('detallePdf', $item->numero_pedido)}}"> Descargar</a>
     </div>
 @stop

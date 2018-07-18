@@ -15,20 +15,20 @@
             {{csrf_field()}}
             <div class="form-row">
               <div class="form-group col-lg-3">
-                <label for="referencia">Referencia</label>
+
                 <input type="text" class="form-control" name="referencia" value="{{old('referencia')}}" id="referencia" placeholder="Referencia del Producto">
                 {!! $errors->first('referencia', '<span class=text-danger>:message</span>') !!}
               </div>
               <div class="form-group col-lg-3">
-                <label for="nombre">Nombre</label>
+
                 <input type="text" class="form-control" name="nombre" id="nombre" value="{{old('nombre')}}" placeholder="Nombre del Producto">
                 {!!$errors->first('nombre', '<span class=text-danger>:message</span>')!!}
               </div>
 
               <div class="form-group col-lg-3">
-                <label for="tipo_producto">Tipo de Producto</label>
+
                 <select class="form-control form-control-md" name="tipo_producto" id="tipo_producto">
-                  <option value="">Escoger...</option>
+                  <option value="">Escoger Tipo de Producto</option>
                   <option value="bodas">Tarjeta de Boda</option>
                   <option value="comuniones">Tarjeta de Comunión</option>
                   <option value="natalicios">Natalicios</option>
@@ -38,7 +38,7 @@
                 {!!$errors->first('tipo_producto', '<span class=text-danger>:message</span>')!!}
               </div>
               <div class="form-group col-lg-3">
-                <label for="precio">Precio del Producto</label>
+
                 <input type="text" class="form-control" name="precio" id="precio" value="{{old('precio')}}" placeholder="Precio del Producto">
                 {!!$errors->first('precio', '<span class=text-danger>:message</span>')!!}
               </div>
@@ -55,31 +55,28 @@
                   </label>
                 </div>
               </div>
+
               <div class="form-group col-lg-3">
-                <label for="porcentaje">Porcentaje</label>
                 <input type="text" class="form-control" name="porcentaje" id="porcentaje" value="{{old('porcentaje')}}" placeholder="Porcentaje de descuento">
                 {!!$errors->first('porcentaje', '<span class=text-danger>:message</span>')!!}
               </div>
 
 
               <div class="form-group col-lg-3">
-                <label for="formato">Formato</label>
                 <input type="text" class="form-control" name="formato" id="formato" value="{{old('formato')}}" placeholder="Formato del Producto">
                 {!!$errors->first('formato', '<span class=text-danger>:message</span>')!!}
               </div>
               <div class="form-group col-lg-3">
-                <label for="medidas">Medidas</label>
                 <input type="text" class="form-control" name="medidas" id="medidas" value="{{old('medidas')}}" placeholder="Medidas del Producto">
                 {!!$errors->first('medidas', '<span class=text-danger>:message</span>')!!}
               </div>
               <div class="form-group col-lg-3">
-                <label for="tipo_paple">Tipo de Papel</label>
+
                 <input type="text" class="form-control" name="tipo_papel" id="tipo_papel" value="{{old('tipo_papel')}}" placeholder="Tipo de Producto">
                 {!!$errors->first('tipo_papel', '<span class=text-danger>:message</span>')!!}
               </div>
               <div class="form-group col-lg-9">
-                <label for="descripcion">Descripción del Producto</label>
-                <textarea class="form-control" name="descripcion" id="descripcion" value="{{old('descripcion')}}" rows="1"></textarea>
+                <textarea placeholder="Descripción del Producto" class="form-control" name="descripcion" id="descripcion" value="{{old('descripcion')}}" rows="1"></textarea>
                 {!!$errors->first('descripcion', '<span class=text-danger>:message</span>')!!}
               </div>
             </div>
@@ -105,6 +102,27 @@
                 <label for="interior">Interior</label>
                   <input type="file" class="form-control-file" name="interior" id="interior" value="{{old('interior')}}" placeholder="">
                   {!!$errors->first('interior', '<span class=text-danger>:message</span>')!!}
+              </div>
+            </div>
+
+
+            <div class="form-row">
+              <div class="form-group col-lg-6">
+                <label for="portada_principal">Portada PNG</label>
+                  <input type="file" class="form-control-file" name="portada_high" id="portada_high" value="{{old('portada_high')}}" placeholder="">
+                  {!!$errors->first('portada_high', '<span class=text-danger>:message</span>')!!}
+              </div>
+              <div class="form-group col-lg-6">
+                <label for="portada">Interior PNG</label>
+                  <input type="file" class="form-control-file" name="interior_high" id="interior_high" value="{{old('interior_high')}}" placeholder="">
+                  {!!$errors->first('interior_high', '<span class=text-danger>:message</span>')!!}
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-lg-6">
+                <label for="dorso">Dorso PNG</label>
+                  <input type="file" class="form-control-file" name="dorso_high" id="dorso_high" value="{{old('dorso_high')}}" placeholder="">
+                  {!!$errors->first('dorso_high', '<span class=text-danger>:message</span>')!!}
               </div>
             </div>
           </div>

@@ -201,6 +201,9 @@ class PaypalController extends Controller
             'numero_pedido' => $num_pedido,
             'precio_total' => $total,
             'user_id' => \Auth::user()->id,
+            'direccion_envio' => "Doctor Esquerdo Nº17 4ºA",
+            'direccion_facturacion' => "Doctor Esquerdo Nº17 4ºA",
+            'pendiente' => 1,
         ]);
 
         foreach($cart as $item){

@@ -84,7 +84,7 @@
                 <div class="col-1"></div>
                 <div class="col-2">
                     <a href="{{route('index')}}" class="btn btn-primary">Seguir Comprando</a>
-                    <a href="{{route('payment')}}" class="btn btn-success">Pagar</a>
+                    <!--<a href="{{route('payment')}}" class="btn btn-success">Pagar</a>-->
                 </div>
                 <div class="col-6"></div>
                 <div class="col-3">

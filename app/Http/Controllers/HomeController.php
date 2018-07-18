@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pedido;
 use App\User;
 use App\Composicion;
+use App\Mensaje;
 class HomeController extends Controller
 {
     /**
@@ -27,8 +28,9 @@ class HomeController extends Controller
     public function index()
     {
         //$user =  User::all();
-        $pedidos =  Pedido::all();
+        $mensaje = Mensaje::all();
+        $pedidos =  Pedido::where('pendiente', 1)->get();
         //$composicion = Composicion::all();
-        return view('admin.home', compact('pedidos'));
+        return view('admin.home', compact('pedidos', 'mensaje'));
     }
 }

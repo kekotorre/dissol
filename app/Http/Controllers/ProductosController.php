@@ -61,8 +61,15 @@ class ProductosController extends Controller
     //Imagenes
     $file_portada_principal = $request->file('portada_principal');
     $file_portada = $request->file('portada');
-    $file_dorso = "";
+    //$file_dorso = "";
     $file_dorso = $request->file('dorso');
+
+    //Imagenes PNG
+    $file_portada_high = $request->file('portada_high');
+    $file_interior_high = $request->file('interior_high');
+    $file_dorso_high = $request->file('dorso_high');
+
+
     //$file_interior = $request->file('interior');
 
     //dd($file_portada = $request->file('portada'));
@@ -71,23 +78,40 @@ class ProductosController extends Controller
     //Ruta del servidor
     $path = 'img/productos/' . $tipo_producto;
 
-    //Extraemos el nombre de la Imagen
+    //Extraemos el nombre de la Imagen JPG
     $fileName_portada_principal = $file_portada_principal->getClientOriginalName();
     $fileName_portada = $file_portada->getClientOriginalName();
-    //$fileName_dorso = $file_dorso->getClientOriginalName();
+    $fileName_dorso = $file_dorso->getClientOriginalName();
     //$fileName_interior = $file_interior->getClientOriginalName();
 
-    //Guardamos las Imagenes en el Servidor
+    //Extraemos el Nombre de la Imagen PNG
+    $fileName_portada_high = $file_portada_high->getClientOriginalName();
+    $fileName_interior_high = $file_interior_high->getClientOriginalName();
+    $fileName_dorso_high = $file_dorso_high->getClientOriginalName();
+
+
+
+    //Guardamos las Imagenes JPG en el Servidor
     $file_portada_principal->move($path, $fileName_portada_principal);
     $file_portada->move($path, $fileName_portada);
-    //$file_dorso->move($path, $fileName_dorso);
+    $file_dorso->move($path, $fileName_dorso);
     //$file_interior->move($path, $fileName_interior);
 
-    //Composicion de la ruta
+    //Guardamos las Imagnes PNG en el Servidor
+    $file_portada_high->move($path, $fileName_portada_high);
+    $file_interior_high->move($path, $fileName_interior_high);
+    $file_dorso_high->move($path, $fileName_dorso_high);
+
+    //Composicion de la ruta JPG
     $ruta_portada_principal = $path . '/' . $fileName_portada_principal;
     $ruta_portada = $path . '/' . $fileName_portada;
-    //$ruta_dorso = $path . '/' . $fileName_dorso;
+    $ruta_dorso = $path . '/' . $fileName_dorso;
     //$ruta_interior = $path . '/' . $fileName_interior;
+
+    //Composicion de la ruta PNG
+    $ruta_portada_high = $path . '/' . $fileName_portada_high;
+    $ruta_interior_high = $path . '/' . $fileName_interior_high;
+    $ruta_dorso_high = $path . '/' . $fileName_dorso_high;
 
     //dd($ruta_interior);
 
@@ -105,8 +129,12 @@ class ProductosController extends Controller
       'descripcion' => $descripcion,
       'portada_principal' => $ruta_portada_principal,
       'portada' => $ruta_portada,
-      //'dorso' =>$ruta_dorso,
+      'dorso' =>$ruta_dorso,
       //'interior' => $ruta_interior
+      'portada_high' => $ruta_portada_high,
+      'interior_high' => $ruta_interior_high,
+      'dorso_high' =>$ruta_dorso_high,
+
     ));
     return redirect()->route('producto.create')->with('notice', 'Se ha guardado correctamente el Producto');
   }

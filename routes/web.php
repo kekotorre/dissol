@@ -52,8 +52,12 @@ Route::middleware(['auth'])->group(function () {
         //return view('usuarios.datos-de-entrega');
     })->name('datos_entrega');
 
+    //datos personales
     Route::get('datos-personales/edit', 'UsersController@edit')->name('user.edit');
     Route::put('datos-personales/{id}', 'UsersController@update')->name('user.update');
+
+    //direcciones
+    Route::post('datos-de-entrega/add', 'DireccionesController@store')->name('direccion.add');
 
     //Route::get('datos-de-entrega', 'UsersController@derecciones')->name('datos-entrega');
 });

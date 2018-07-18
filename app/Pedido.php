@@ -9,7 +9,7 @@ use App\Composicion;
 class Pedido extends Model
 {
     protected $table ="pedidos";
-    protected $fillable = ['numero_pedido', 'user_id'];
+    protected $fillable = ['numero_pedido', 'user_id', 'direccion_envio', 'direccion_facturacion', 'pendiente'];
 
     public function user(){
         return $this->belongsTo(User::class);
