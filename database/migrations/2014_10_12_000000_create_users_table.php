@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('fijo');
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('admin')->default(false);
+            $table->boolean('admin')->default(true);
             $table->boolean('visible')->default(true);
             $table->rememberToken();
             $table->timestamps();
