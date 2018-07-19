@@ -15,10 +15,11 @@ class UsersTableSeeder extends Seeder
             'name' => "sergio",
             'apellido_1' => "torre",
             'apellido_2' => "de la Fuente",
+            'cif' => 123456789,
             'movil' => "618496362",
             'email' => "kekotorre@gmail.com",
             'password' => bcrypt('123456'),
-            'admin' => 1,
+
         ]);
     }
 }
