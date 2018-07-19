@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'cif' => "123456789",
             'fijo' => "915520922",
             'movil' => "618496362",
-            'email' => "kekotorre@gmail.com",
+            'email' => "emilio@gmail.com",
             'password' => bcrypt('123456'),
             'admin' => "1",
 
