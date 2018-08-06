@@ -38,9 +38,9 @@ class LoginController extends Controller
   }
   public function redirectPath()
   {
-    if (auth()->check() && auth()->user()->admin === 1) {
+    if (auth()->check() && auth()->user()->admin === 0) {
       return '/home';
-    }else if (auth()->check() && auth()->user()->admin === 0) {
+  }else if (auth()->check() && auth()->user()->admin === 1) {
       return '/';
     }
   }
