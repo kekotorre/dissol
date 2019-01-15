@@ -15,6 +15,13 @@
 return view('welcome');
 });*/
 
+//ruta pruebas
+Route::get('pruebas', function(){
+    return view('pruebas');
+});
+
+
+
 Auth::routes();
 
 //Rutas tienda

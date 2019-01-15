@@ -8,7 +8,7 @@ use App\Producto;
 
 class Composicion extends Model
 {
-    protected $table ="composicions";
+    protected $table ="composicion";
     protected $fillable = ['cantidad',
     'precio_unidad',
     'precio_total',
