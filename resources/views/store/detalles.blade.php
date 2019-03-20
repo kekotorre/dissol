@@ -18,7 +18,7 @@
                                     -
                                     <span class="card-text badge badge-warning"> 0,38€</span>
                                 @else
-                                    <span class="card-text badge badge-light" style=" color:black"> {{number_format($tarjeta->precio2, ',', '.')}}€</span>
+                                    <span class="card-text badge badge-light" style=" color:black"> {{number_format($tarjeta->precio, 2, ',', '.')}}€</span>
                                 @endif
                             </h4>
 

@@ -13,7 +13,7 @@
                             <h5 class="card-title">{{$tarjeta->nombre}} <small class="mp-1 mb-1">| {{$tarjeta->referencia}}</small></h5>
                             <h4 class="text-center">
 
-                                @if ($tarjeta->descuento === 1)
+                                @if ($tarjeta->descuento)
                                     <span class="card-text badge badge-light" style="text-decoration:line-through; color:black"> {{number_format($tarjeta->precio)}}€</span>
                                     -
                                     <span class="card-text badge badge-warning"> 0,38€</span>
@@ -26,6 +26,9 @@
                     </div>
                 </div>
             @endforeach
+        </div>
+        <div class="colo-lg-12">
+            <div class="row justify-content-center align-items-center">{!! $bodas->links()!!}</div>
         </div>
     </div>
 @stop

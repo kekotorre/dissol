@@ -20,12 +20,6 @@ class ProductosController extends Controller
     return view('admin.productos.index', compact('productos'));
   }
 
-  /*public function saludo()
-  {
-    $productos = "hola";
-    return view('detalles', compact('productos'));
-}*/
-
   /**
   * Show the form for creating a new resource.
   *
@@ -53,21 +47,18 @@ class ProductosController extends Controller
     $precio = $request->input('precio');
     $descuento = $request->input('descuento');
     $porcentaje = $request->input('porcentaje');
-    $formato = $request->input('formato');
-    $medidas = $request->input('medidas');
-    $tipo_papel = $request->input('tipo_papel');
     $descripcion = $request->input('descripcion');
 
     //Imagenes
     $file_portada_principal = $request->file('portada_principal');
     $file_portada = $request->file('portada');
-    //$file_dorso = "";
     $file_dorso = $request->file('dorso');
+    $file_interior = $request->file('interior');
 
     //Imagenes PNG
-    $file_portada_high = $request->file('portada_high');
-    $file_interior_high = $request->file('interior_high');
-    $file_dorso_high = $request->file('dorso_high');
+    //$file_portada_high = $request->file('portada_high');
+    //$file_interior_high = $request->file('interior_high');
+    //$file_dorso_high = $request->file('dorso_high');
 
 
     //$file_interior = $request->file('interior');
@@ -76,18 +67,18 @@ class ProductosController extends Controller
     //dd($file_interior = $request->file('interior'));
 
     //Ruta del servidor
-    $path = 'img/productos/' . $tipo_producto;
+    $path = 'img/productos/' . $tipo_producto .'/'. $referencia;
 
     //Extraemos el nombre de la Imagen JPG
     $fileName_portada_principal = $file_portada_principal->getClientOriginalName();
     $fileName_portada = $file_portada->getClientOriginalName();
     $fileName_dorso = $file_dorso->getClientOriginalName();
-    //$fileName_interior = $file_interior->getClientOriginalName();
+    $fileName_interior = $file_interior->getClientOriginalName();
 
     //Extraemos el Nombre de la Imagen PNG
-    $fileName_portada_high = $file_portada_high->getClientOriginalName();
-    $fileName_interior_high = $file_interior_high->getClientOriginalName();
-    $fileName_dorso_high = $file_dorso_high->getClientOriginalName();
+    //$fileName_portada_high = $file_portada_high->getClientOriginalName();
+    //$fileName_interior_high = $file_interior_high->getClientOriginalName();
+    //$fileName_dorso_high = $file_dorso_high->getClientOriginalName();
 
 
 
@@ -95,23 +86,23 @@ class ProductosController extends Controller
     $file_portada_principal->move($path, $fileName_portada_principal);
     $file_portada->move($path, $fileName_portada);
     $file_dorso->move($path, $fileName_dorso);
-    //$file_interior->move($path, $fileName_interior);
+    $file_interior->move($path, $fileName_interior);
 
     //Guardamos las Imagnes PNG en el Servidor
-    $file_portada_high->move($path, $fileName_portada_high);
-    $file_interior_high->move($path, $fileName_interior_high);
-    $file_dorso_high->move($path, $fileName_dorso_high);
+    //$file_portada_high->move($path, $fileName_portada_high);
+    //$file_interior_high->move($path, $fileName_interior_high);
+    //$file_dorso_high->move($path, $fileName_dorso_high);
 
     //Composicion de la ruta JPG
     $ruta_portada_principal = $path . '/' . $fileName_portada_principal;
     $ruta_portada = $path . '/' . $fileName_portada;
     $ruta_dorso = $path . '/' . $fileName_dorso;
-    //$ruta_interior = $path . '/' . $fileName_interior;
+    $ruta_interior = $path . '/' . $fileName_interior;
 
     //Composicion de la ruta PNG
-    $ruta_portada_high = $path . '/' . $fileName_portada_high;
-    $ruta_interior_high = $path . '/' . $fileName_interior_high;
-    $ruta_dorso_high = $path . '/' . $fileName_dorso_high;
+    //$ruta_portada_high = $path . '/' . $fileName_portada_high;
+    //$ruta_interior_high = $path . '/' . $fileName_interior_high;
+    //$ruta_dorso_high = $path . '/' . $fileName_dorso_high;
 
     //dd($ruta_interior);
 
@@ -123,17 +114,16 @@ class ProductosController extends Controller
       'precio' => $precio,
       'descuento' => $descuento,
       'porcentaje' => $porcentaje,
-      'formato' => $formato,
-      'medidas' => $medidas,
-      'tipo_papel' => $tipo_papel,
       'descripcion' => $descripcion,
       'portada_principal' => $ruta_portada_principal,
       'portada' => $ruta_portada,
       'dorso' =>$ruta_dorso,
-      //'interior' => $ruta_interior
-      'portada_high' => $ruta_portada_high,
-      'interior_high' => $ruta_interior_high,
-      'dorso_high' =>$ruta_dorso_high,
+
+      'interior' => $ruta_interior,
+
+      //'portada_high' => $ruta_portada_high,
+      //'interior_high' => $ruta_interior_high,
+      //'dorso_high' =>$ruta_dorso_high,
 
     ));
     return redirect()->route('producto.create')->with('notice', 'Se ha guardado correctamente el Producto');
@@ -183,9 +173,6 @@ class ProductosController extends Controller
     $producto->nombre = $request->nombre;
     $producto->referencia = $request->referencia;
     $producto->precio = $request->precio;
-    $producto->formato = $request->formato;
-    $producto->medidas = $request->medidas;
-    $producto->tipo_papel = $request->tipo_papel;
     $producto->descripcion = $request->descripcion;
 
     $producto->save();

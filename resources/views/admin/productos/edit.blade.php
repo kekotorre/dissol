@@ -70,30 +70,7 @@
                             <p class="h1">{{$producto->precio}}€</p> <input class="form-control col-3" type="text" name="precio" value="{{$producto->precio}}">
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>
-                                <div class="form-inline">
-                                    <span><h5>Formato: {{$producto->formato}}</h5></span>
-                                    <input class="form-control " type="text" name="formato" value="{{$producto->formato}}">
-                                </div>
-                            </p>
-
-                            <p>
-                                <div class="form-inline">
-                                    <span>Medidas: {{$producto->medidas}}</span>
-                                    <input class="form-control" type="text" name="medidas" value="{{$producto->medidas}}">
-                                </div>
-                            </p>
-
-                            <p>
-                                <div class="form-inline">
-                                    <span>Tipo de Paple: {{$producto->tipo_papel}}</span>
-                                    <input class="form-control " type="text" name="tipo_papel" value="{{$producto->tipo_papel}}">
-                                </div>
-                            </p>
-                        </div>
-                    </div>
+                    
                     <div class="row">
                         <div class="col-7">
                             <p class="h1">{{$producto->descripcion}}</p>

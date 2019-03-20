@@ -23,7 +23,7 @@ class CarouselPrincipalController extends Controller
   public function carousel()
   {
     //Mostraremos todo el contenido de la tabla CarouselPrincipal
-    $carouselP = CarouselPrincipal::all();
+    $carouselP = CarouselPrincipal::where('visible', '1')->get();
     //return view('index', compact('carouselP'));
     return view('store.index', compact('carouselP'));
   }

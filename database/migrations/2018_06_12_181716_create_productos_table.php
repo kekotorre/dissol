@@ -27,7 +27,8 @@ class CreateProductosTable extends Migration
             $table->string('formato')->nullable();
             $table->string('medidas');
             $table->string('tipo_papel');
-            $table->string('descripcion');
+            $table->text('descripcion');
+            
             //Fotos del producto
             $table->string('portada_principal');
             $table->string('portada');

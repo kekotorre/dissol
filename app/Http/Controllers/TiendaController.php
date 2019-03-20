@@ -9,25 +9,29 @@ class TiendaController extends Controller
 {
 
     public function bodas(){
-        $bodas = Producto::where('tipo_producto', 'bodas')->get();
-        //dd($producto);
+        $bodas = Producto::where('visible', 1)->where('tipo_producto' ,'bodas')
+        ->orderBy('referencia', 'asc')->paginate(12);
+        //dd($bodas);
         return view('store.bodas', compact('bodas'));
     }
 
     public function comuniones(){
-        $comuniones = Producto::where('tipo_producto', 'comuniones')->get();
+        $comuniones = Producto::where('visible', 1)->where('tipo_producto' ,'comuniones')
+        ->orderBy('referencia', 'asc')->paginate(12);
         //dd($producto);
         return view('store.comuniones', compact('comuniones'));
     }
 
     public function natalicios(){
-        $natalicios = Producto::where('tipo_producto', 'natalicios')->get();
+        $natalicios = Producto::where('visible', 1)->where('tipo_producto' ,'natalicios')
+        ->orderBy('referencia', 'asc')->paginate(12);
         //dd($producto);
         return view('store.natalicios', compact('natalicios'));
     }
 
     public function detalles(){
-        $detalles = Producto::where('tipo_producto', 'detalles')->get();
+        $detalles = Producto::where('visible', 1)->where('tipo_producto' ,'detalles')
+        ->orderBy('referencia', 'asc')->paginate(12);
         //dd($producto);
         return view('store.detalles', compact('detalles'));
     }

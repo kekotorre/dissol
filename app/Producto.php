@@ -15,13 +15,11 @@ class Producto extends Model
                           'precio',
                           'descuento',
                           'cantidad_descuento',
-                          'formato',
-                          'medidas',
-                          'tipo_papel',
                           'descripcion',
                           'portada_principal',
                           'portada',
                           'dorso',
+                          'interior',
                           'visible',
                           'composicion_ejemplo'
                         ];

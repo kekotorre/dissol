@@ -12,6 +12,11 @@
     <!-- font icons -->
     <!--<link rel="stylesheet" href="assets/css/font-awesome.min.css"  />-->
     <link rel="shortcut icon" href="img/logomundigraphic.png" />
+    <!-- jquery -->
+
+    <!--fancyBox-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" />
+
     <title>Mundigraphic</title>
 </head>
 <body>
@@ -20,7 +25,7 @@
         <div class="col-12">
             <nav class="navbar navbar-expand-lg navbar-light " id="">
                 <div class="container">
-                    <a style="color:black;" class="navbar-brand js-scroll-trigger" href="{{ route('index')}}"><img height="80px" id="" src="img/logomundigraphic.png" alt="" title="Mundigraphic.es"/></a>
+                    <a style="color:black;" class="navbar-brand js-scroll-trigger" href="{{ route('index')}}"><img height="80px" id="" src="../img/logomundigraphic.png" alt="" title="Mundigraphic.es"/></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
                         <span class="navbar-toggler-icon"></span>
@@ -42,6 +47,7 @@
                             <li class="nav-item">
                                 <a style="color:black;" class="nav-link js-scroll-trigger" href="{{ route('contacto')}}">Contacto</a>
                             </li>
+
                             @if (Auth::guest())
                                 <li><a style="color:black;" class="nav-link js-scroll-trigger" href="{{ route('login') }}">Iniciar Sesión</a></li>
                             @else
@@ -56,6 +62,7 @@
                                     <i class="fas fa-shopping-cart"></i>
                                 </a>
                             </li>
+                        
                         </ul>
                     </div>
                 </div>
@@ -97,52 +104,13 @@
             </div>
         </div>
     </footer>
-
-    <!--//BLOQUE COOKIES-->
-    <div id="barraaceptacion" style="display: block;">
-        <div class="inner">
-            Solicitamos su permiso para obtener datos estadísticos de su navegación en esta web. Si continúa navegando consideramos que acepta el uso de cookies.
-            <a href="javascript:void(0);" class="ok" onclick="PonerCookie();"><b>OK</b></a> |
-            <a href="http://politicadecookies.com" target="_blank" class="info">Más información</a>
-        </div>
-    </div>
-
     <script>
-    function getCookie(c_name){
-        var c_value = document.cookie;
-        var c_start = c_value.indexOf(" " + c_name + "=");
-        if (c_start == -1){
-            c_start = c_value.indexOf(c_name + "=");
-        }
-        if (c_start == -1){
-            c_value = null;
-        }else{
-            c_start = c_value.indexOf("=", c_start) + 1;
-            var c_end = c_value.indexOf(";", c_start);
-            if (c_end == -1){
-                c_end = c_value.length;
-            }
-            c_value = unescape(c_value.substring(c_start,c_end));
-        }
-        return c_value;
-    }
-
-    function setCookie(c_name,value,exdays){
-        var exdate=new Date();
-        exdate.setDate(exdate.getDate() + exdays);
-        var c_value=escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
-        document.cookie=c_name + "=" + c_value;
-    }
-
-    if(getCookie('tiendaaviso')!="1"){
-        document.getElementById("barraaceptacion").style.display="block";
-    }
-    function PonerCookie(){
-        setCookie('tiendaaviso','1',365);
-        document.getElementById("barraaceptacion").style.display="none";
-    }
-</script>
-<!--//FIN BLOQUE COOKIES-->
+    $('[data-fancybox="gallery"]').fancybox({
+        // Options will go here
+    });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/font-awesome.js') }}"></script>
 <script src="{{ asset('js/cart.js') }}"></script>
