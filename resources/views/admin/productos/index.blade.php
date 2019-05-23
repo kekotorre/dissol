@@ -20,16 +20,18 @@
           <table class="table">
             <thead>
               <tr>
+                <th scope="col"></th>
                 <th scope="col">Referencia</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Precio</th>
                 <th scope="col">Visible</th>
-                <th scope="col">Editar</th>
+                <th scope="col">Acciones</th>
               </tr>
             </thead>
             <tbody>
               @foreach ($productos as $producto)
                 <tr>
+                  <td class=""><img src="{{$producto->portada_principal}}" height="10%" width="10%" class="position-left" alt="..."></td>
                   <td class="text-center">{{$producto->referencia}}</td>
                   <td class="text-center">{{$producto->nombre}}</td>
                   <td class="text-center">{{$producto->precio}} €</td>
@@ -48,7 +50,17 @@
                       </a>
                     @endif
                   </td>
-                  <td class="text-center"><a href="{{route('producto.edit', $producto->id)}}"><i class="fas fa-edit"></i></a></td>
+                  <td class="text-center">
+                      <a href="{{route('producto.edit', $producto->id)}}"><i class="fas fa-lg fa-edit"></i></a>
+                      <a class="trash" type="submit" href="{{route('producto.destroy', $producto->id)}}"><i class="far fa-lg fa-trash-alt"></i></a>
+                      <form method="post" action="{{route('producto.destroy', $producto->id)}}">
+                                                {!! method_field('DELETE') !!}
+                                                {!! csrf_field() !!}
+                                                <button type="submit"><i class="far fa-lg fa-trash-alt"></i></button>
+                                                <a class="trash" type="submit" href="{{route('producto.destroy', $producto->id)}}"><i class="far fa-lg fa-trash-alt"></i></a>
+                                            </form>
+
+                  </td>
                 </tr>
               @endforeach
 

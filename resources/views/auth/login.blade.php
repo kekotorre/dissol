@@ -8,6 +8,12 @@
                 <h5 class="card-header text-center">Iniciar Sesión</h5>
 
                 <div class="card-body ">
+                    @if(Session::has('confirmation'))
+                        <div class="alert alert-success"><h3>{{ Session::get('confirmation') }}</h3></div>
+                    @endif
+                        @if(Session::has('emailConfirmation'))
+                            <div class="alert alert-success"><h3>{{ Session::get('emailConfirmation') }}</h3></div>
+                        @endif
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
                         {{ csrf_field() }}
 

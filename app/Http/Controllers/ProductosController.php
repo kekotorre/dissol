@@ -189,7 +189,8 @@ class ProductosController extends Controller
   */
   public function destroy($id)
   {
-    //
+      Producto::findorfail($id)->delete();
+      return redirect()->route('producto.index');
   }
 
   public function hide($id)
@@ -206,6 +207,7 @@ class ProductosController extends Controller
     //Función con la que actualizamos el valor del campo visble a 0
     $producto = Producto::all()->find($id);
     $producto->update(array('visible' => '1'));
-    return redirect()->route('producto.index');
+    //return view('admin.productos.index', compact('productos'));
+    return redirect()->route('admin.productos.index');
   }
 }

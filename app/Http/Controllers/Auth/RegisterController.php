@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
 {
@@ -62,13 +65,54 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $data['confirmation_token'] = str_random(20);
+
+        $user = User::create([
             'name' => $data['name'],
             'apellido_1' => $data['apellido_1'],
             'apellido_2' => $data['apellido_2'],
             'movil' => $data['movil'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'confirmation_token' => $data['confirmation_token'],
         ]);
+
+        // Send confirmation code
+        Mail::send('emails.confirmation_code', $data, function($message) use($data) {
+            $message->to('kekotorre@gmail.com', $data['name'])->subject('test');
+        });
+
+        return $user;
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        //$this->guard();
+
+        return redirect('/login')->with('confirmation', 'Tienes que confirmar tu correo');
+    }
+
+    public function getConfirmation($code){
+        $user = User::where('confirmation_token', $code)->first();
+
+        if (! $user)
+            return redirect('/');
+
+        $user->confirmed = true;
+        $user->confirmation_token = null;
+        $user->save();
+
+        return redirect('/login')->with('confirmation', 'Has confirmado correctamente tu correo!');
+
     }
 }

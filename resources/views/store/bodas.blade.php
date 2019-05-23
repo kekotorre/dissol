@@ -10,7 +10,7 @@
                             <img class="card-img-top" src="{{$tarjeta->portada_principal}}" alt="">
                         </a>
                         <div class="card-body">
-                            <h5 class="card-title">{{$tarjeta->nombre}} <small class="mp-1 mb-1">| {{$tarjeta->referencia}}</small></h5>
+                            <h5 class="card-title">{{strtr(strtoupper('invitación de boda '. $tarjeta->nombre), "áéíóúçñäëïöü","ÁÉÍÓÚÇÑÄËÏÖÜ") }} <small class="mp-1 mb-1"> {{$tarjeta->referencia}}</small></h5>
                             <h4 class="text-center">
 
                                 @if ($tarjeta->descuento)

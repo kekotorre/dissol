@@ -3,7 +3,6 @@
 <html lang="es-es">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1-0, minimum-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- css Bootstrap -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -62,7 +61,7 @@
                                     <i class="fas fa-shopping-cart"></i>
                                 </a>
                             </li>
-                        
+
                         </ul>
                     </div>
                 </div>
@@ -104,13 +103,20 @@
             </div>
         </div>
     </footer>
-    <script>
-    $('[data-fancybox="gallery"]').fancybox({
-        // Options will go here
-    });
-    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+    <script type="text/javascript">
+    $('[data-fancybox="images"]').fancybox({
+        buttons : [
+            'zoom',
+            'fullScreen',
+            'close',
+            'thumbs'
+        ],
+        protect: true,
+        keyboard: true,
+    });
+</script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/font-awesome.js') }}"></script>
 <script src="{{ asset('js/cart.js') }}"></script>

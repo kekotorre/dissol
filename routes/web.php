@@ -33,7 +33,7 @@ Route::get('detalles', 'TiendaController@detalles')->name('detalles');
 Route::get('contacto', 'TiendaController@contacto')->name('contacto');
 Route::post('mensaje', ['as' => 'mensaje.store', 'uses' => 'MensajesController@store']);
 
-Route::get('bodas/{url}','TiendaController@show')->name('detail-bodas');
+Route::get('bodas/invitacion-boda-{url}','TiendaController@show')->name('detail-bodas');
 Route::get('comuniones/{url}','TiendaController@show')->name('detail-comuniones');
 
 Route::get('personalizar/{id}', 'TiendaController@personalizar')->name('personalizar');
@@ -168,7 +168,31 @@ Route::middleware(['admin'])->group(function () {
     //Pedido
     Route::resource('pedidos', 'PedidosController');
     Route::get('/detalle-del-pedido/{id}', 'PedidosController@detallePedido')->name('detalle-pedido');
-    Route::get('{num_pedido}', 'PedidosController@detallePdf')->name('detallePdf');
+    //Route::get('{num_pedido}', 'PedidosController@detallePdf')->name('detallePdf');
     Route::get('composicion/{id_composicion}', 'PedidosController@composicionPdf')->name('composicionPdf');
 
 });
+
+
+
+
+
+
+
+//correo
+Route::get('sendemail', function(){
+    $data = array(
+        'name' => 'Dissol',
+    );
+
+    Mail::send('emails.welcome', $data, function($message){
+        $message->from('mundigraphic@mundigraphic.es', 'Mundigraphic');
+
+        $message->to('kekotorre@gmail.com')->subject('test');
+    });
+
+    return "tu email ha sido enviado correctamente";
+});
+
+
+Route::get('/register/verify/{code}', 'Auth\RegisterController@getConfirmation');
