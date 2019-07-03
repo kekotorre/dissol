@@ -16,34 +16,34 @@
 </head>
 <body>
 
-    <?php
-        $mensaje = App\Mensaje::all();
-        $pedidos =  App\Pedido::all();
-    ?>
+<?php
+$mensaje = App\Mensaje::all();
+$pedidos =  App\Pedido::all();
+?>
 
-    <!-- Cabecera con Menú -->
-    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
-        <a class="navbar-brand" style="color:black;" class="navbar-brand js-scroll-trigger" href="{{route('home')}}">Dashboard</a>
-        <ul class="nav navbar nav-top-links ml-auto ">
-            <li class="nav-item dropdown">
-                <a class="nav-link" href="{{route('mensajes.index')}}"><em class="fas fa-envelope"></em>
-                    @if($mensaje === 0)
-                    @else
-                        <span class="label label-danger">{{count($mensaje)}}</span>
-                    @endif
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('pedidos.index')}}"><i class="fas fa-inbox"></i>
-                    @if($pedidos === 0)
-                    @else
-                        <span class="label1 label-danger">{{count($pedidos)}}</span>
-                    @endif
-                </a>
-            </li>
-            <li>
-                <a class="nav-link" href="{{ route('logout') }}"
-                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+<!-- Cabecera con Menú -->
+<nav class="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+    <a class="navbar-brand" style="color:black;" class="navbar-brand js-scroll-trigger" href="{{route('home')}}">Dashboard</a>
+    <ul class="nav navbar nav-top-links ml-auto ">
+        <li class="nav-item dropdown">
+            <a class="nav-link" href="{{route('mensajes.index')}}"><em class="fas fa-envelope"></em>
+                @if($mensaje === 0)
+                @else
+                    <span class="label label-danger">{{count($mensaje)}}</span>
+                @endif
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('pedidos.index')}}"><i class="fas fa-inbox"></i>
+                @if($pedidos === 0)
+                @else
+                    <span class="label1 label-danger">{{count($pedidos)}}</span>
+                @endif
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="{{ route('logout') }}"
+               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -67,7 +67,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('carousel-secundario.index')}}">
+                        <a class="nav-link" disabled="" href="{{route('carousel-secundario.index')}}">
                             Carrusel Secundario
 
                         </a>

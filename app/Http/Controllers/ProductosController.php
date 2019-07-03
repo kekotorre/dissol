@@ -189,6 +189,7 @@ class ProductosController extends Controller
   */
   public function destroy($id)
   {
+      return 'hola';
       Producto::findorfail($id)->delete();
       return redirect()->route('producto.index');
   }
