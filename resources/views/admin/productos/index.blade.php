@@ -49,13 +49,7 @@
                 </td>
                 <td class="text-center">
                   <a href="{{route('producto.edit', $producto->id)}}"><i class="fas fa-lg fa-edit"></i></a>
-                  <a id="prueba"  href="{{route('producto.destroy', $producto->id)}}"><i class="far fa-lg fa-trash-alt"></i></a>
-                  <form method="post" action="{{route('producto.destroy', $producto->id)}}">
-                    {!! method_field('DELETE') !!}
-                    {!! csrf_field() !!}
-
-                    <button class="" type="submit"><i class="far fa-lg fa-trash-alt"></i></button>
-                  </form>
+                  <a id="borrar"  href="{{route('producto.destroy', $producto->id)}}"><i class="far fa-lg fa-trash-alt borrar"></i></a>
                 </td>
               </tr>
             @endforeach

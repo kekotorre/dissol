@@ -205,7 +205,7 @@ class ProductosController extends Controller
 
   public function activate($id)
   {
-    //Función con la que actualizamos el valor del campo visble a 0
+    //Función con la que actualizamos el valor del campo visble a 1
     $producto = Producto::all()->find($id);
     $producto->update(array('visible' => '1'));
     //return view('admin.productos.index', compact('productos'));

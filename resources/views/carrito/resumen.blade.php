@@ -25,6 +25,7 @@
         <br>
         <div class="row">
             <div class="col-lg-6">
+                @if(Auth::user()->address = null)
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>Seleccionar dirección de Envio</h3>
@@ -48,6 +49,9 @@
                         </select>
                     </div>
                 </div>
+                    @else
+                <h1>Aqui va un form para añadir dirección si no se ha guardado</h1>
+                @endif
             </div>
             <div class="col-lg-6">
                 <table class="table text-center">
@@ -96,11 +100,14 @@
             <div class="col-2">
                 <a href="{{route('carrito')}}" class="btn btn-primary">Atras</a>
             </div>
-            <div class="col-6"></div>
-            <div class="col-3">
-                <a href="{{route('payment')}}" class="btn btn-success">Pagar <i class="fab fa-paypal"></i></a>
-                </div>
+            <div class="col-5"></div>
+            <div class="col-2">
+                <a href="{{route('payment')}}" class="btn  float-right" style="background-color: #3b7bbf; color: white;">Pagar <i class="fab fa-paypal"></i></a>
             </div>
+            <div class="col-2">
+                <a href="" class="btn float-auto" style="background-color: rgb(36,168,106); color: white;">TPV <i class="far fa-credit-card"></i></a>
+            </div>
+        </div>
 
     </div>
 @stop
