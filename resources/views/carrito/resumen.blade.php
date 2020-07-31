@@ -1,7 +1,6 @@
 @extends('layouts/layout')
 
 @section('contenido')
-
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -102,12 +101,29 @@
             </div>
             <div class="col-5"></div>
             <div class="col-2">
-                <a href="{{route('payment')}}" class="btn  float-right" style="background-color: #3b7bbf; color: white;">Pagar <i class="fab fa-paypal"></i></a>
+                <a href="{{route('payment')}}" class="btn  float-right" style="background-color: #3b7bbf; color: white;">Paypal <i class="fab fa-paypal"></i></a>
             </div>
             <div class="col-2">
-                <a href="" class="btn float-auto" style="background-color: rgb(36,168,106); color: white;">TPV <i class="far fa-credit-card"></i></a>
+                <a href="" data-toggle="modal" data-target="#myModal" class="btn float-auto" style="background-color: rgb(36,168,106); color: white;">TPV <i class="far fa-credit-card"></i></a>
             </div>
         </div>
+        <div>
+            <button id="checkout-button">Checkout</button>
+        </div>
 
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @stop

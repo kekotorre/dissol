@@ -30,6 +30,7 @@ return [
     ],
 
     'stripe' => [
+        'base_uri' => env('STRIPE_BASE_URI'),
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),

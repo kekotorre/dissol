@@ -104,6 +104,9 @@ Route::get('resumen',[
     'uses' => 'CartController@resumen'
 ]);
 
+//Pago con Stripe
+Route::post('stripe', 'StripeController@cargoStripe')->name('charge');
+
 
 //Route::post('mensaje', ['as' => 'mensaje.store', 'uses' => 'MensajesController@store']);
 
