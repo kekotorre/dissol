@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Producto;
+use Stripe\Checkout\Session;
+use Stripe\Stripe;
 
 class CartController extends Controller
 {
@@ -27,9 +29,49 @@ class CartController extends Controller
     //Resumen
     public function resumen(){
         $cart = \Session::get('cart');
+        foreach($cart as $item){
+            //dd($item);
+            $nombreTarjeta = $item->nombre;
+            $descripcionTarjeta = $item->descripcion;
+            $portadaPrincipa = 'http://mundigraphic.es/' . $item->portada_principal;
+            //dd(str_replace(' ', '%20', $portadaPrincipa));
+        }
         //$cart = 1;
         $total = $this->total();
-        return view('carrito.resumen', compact('cart', 'total'));
+        $totalStripe = number_format( $total + 4.0, 2, ',', '.');
+        $totalStripe = str_replace(',', '', $totalStripe);
+        //dd($totalStripe);
+
+        Stripe::setApiKey('sk_test_WoU72Lb4i9MMkWWqANvMy1rc00fJym1egv');
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'eur',
+                    'product_data' => [
+                        'name' => $nombreTarjeta,
+                        'description' => $descripcionTarjeta,
+                        'images' => [str_replace(' ', '%20', $portadaPrincipa)]
+                    ],
+                    'unit_amount' => $totalStripe,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('success'),
+            'cancel_url' => route('resumen'),
+        ]);
+
+        return view('carrito.resumen', compact('cart', 'total', 'session'));
+    }
+
+    /**
+     *
+     */
+    public function success(){
+        dd(\Session::get('cart'));
+        return \Redirect::route('index')
+            ->with('compra', 'Compra realizada de forma correcta');
     }
 
     //Add item

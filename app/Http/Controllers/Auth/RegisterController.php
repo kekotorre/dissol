@@ -79,7 +79,7 @@ class RegisterController extends Controller
 
         // Send confirmation code
         Mail::send('emails.confirmation_code', $data, function($message) use($data) {
-            $message->to('kekotorre@gmail.com', $data['name'])->subject('test');
+            $message->to('kekotorre@gmail.com', $data['name'])->subject('Confirma tu cuenta en Mundigraphic');
         });
 
         return $user;

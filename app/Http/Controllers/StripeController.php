@@ -14,7 +14,27 @@ class StripeController extends Controller
 
     public function cargoStripe(Request $request){
 
+        Stripe::setApiKey('sk_test_WoU72Lb4i9MMkWWqANvMy1rc00fJym1egv');
 
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => 'T-shirt',
+                    ],
+                    'unit_amount' => 2000,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => 'https://example.com/success?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => 'https://example.com/cancel',
+        ]);
+
+
+/*
         Stripe::setApiKey(config('services.stripe.secret'));
 
 

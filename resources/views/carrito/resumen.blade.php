@@ -94,6 +94,7 @@
                 </div>
             </div>
         </div>
+        <br>
         <div class="row">
             <div class="col-1"></div>
             <div class="col-2">
@@ -104,26 +105,33 @@
                 <a href="{{route('payment')}}" class="btn  float-right" style="background-color: #3b7bbf; color: white;">Paypal <i class="fab fa-paypal"></i></a>
             </div>
             <div class="col-2">
-                <a href="" data-toggle="modal" data-target="#myModal" class="btn float-auto" style="background-color: rgb(36,168,106); color: white;">TPV <i class="far fa-credit-card"></i></a>
+                <a href="" id="checkout-stripe-button" class="btn float-auto" style="background-color: rgb(36,168,106); color: white;">TPV <i class="far fa-credit-card"></i></a>
             </div>
         </div>
-        <div>
-            <button id="checkout-button">Checkout</button>
-        </div>
-
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                    </div>
-                </div>
+        <br>
+        <div class="row">
+            <div class="col-8"></div>
+            <div class="col-3" style="margin-left: 15px;">
+                <a href="" id="" class="btn float-right" style="background-color: rgb(36,168,106); color: white; width: 203px">Transferencia Bancaria</a>
             </div>
         </div>
     </div>
+    <script>
+        var stripe = Stripe('{{config('services.stripe.key')}}');
+
+        var checkoutButton = document.getElementById('checkout-stripe-button');
+
+        checkoutButton.addEventListener('click', function() {
+            stripe.redirectToCheckout({
+                // Make the id field from the Checkout Session creation API response
+                // available to this file, so you can provide it as argument here
+                // instead of the  placeholder.
+                sessionId: '{{ $session->id}}'
+            }).then(function (result) {
+                // If `redirectToCheckout` fails due to a browser or network
+                // error, display the localized error message to your customer
+                // using `result.error.message`.
+            });
+        });
+    </script>
 @stop

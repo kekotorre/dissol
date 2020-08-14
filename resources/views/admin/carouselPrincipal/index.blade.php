@@ -19,7 +19,6 @@
             </thead>
             <tbody>
               @foreach ($carouselP as $carousel)
-                {{$carousel->count()}}
                 <tr>
                   <td class="text-center">{{$carousel->id}}</td>
                   <td class="text-center">{{$carousel->titulo}}</td>
