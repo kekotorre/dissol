@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\UserRegister;
 use Illuminate\Http\Request;
 
 use App\Mensaje;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Notification;
 
 class MensajesController extends Controller
 {
+    use Notifiable;
     /**
      * Display a listing of the resource.
      *
@@ -105,5 +109,9 @@ class MensajesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public static function emailRegister($user){
+        Notification::send($user, new UserRegister());
     }
 }

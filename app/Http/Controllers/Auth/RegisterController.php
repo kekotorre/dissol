@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\MensajesController;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
@@ -65,7 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $data['confirmation_token'] = str_random(20);
+        $confirmation_token = str_random(20);
 
         $user = User::create([
             'name' => $data['name'],
@@ -74,13 +75,14 @@ class RegisterController extends Controller
             'movil' => $data['movil'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'confirmation_token' => $data['confirmation_token'],
+            'confirmation_token' => $confirmation_token,
         ]);
 
+        MensajesController::emailRegister($user);
         // Send confirmation code
-        Mail::send('emails.confirmation_code', $data, function($message) use($data) {
+        /*Mail::send('emails.confirmation_code', $data, function($message) use($data) {
             $message->to('kekotorre@gmail.com', $data['name'])->subject('Confirma tu cuenta en Mundigraphic');
-        });
+        });*/
 
         return $user;
     }

@@ -201,3 +201,6 @@ Route::get('sendemail', function(){
 Route::get('/register/verify/{code}', 'Auth\RegisterController@getConfirmation');
 Route::get('pruebas', 'TiendaController@pruebas');
 Route::get('/success', 'CartController@success')->name('success');
+
+//Notificaciones
+Route::get('/register_email', 'MensajesController@emailRegister');
