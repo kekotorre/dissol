@@ -24,14 +24,15 @@
         <br>
         <div class="row">
             <div class="col-lg-6">
-                @if(Auth::user()->address = null)
+
+                @if(!Auth::user()->address->isEmpty())
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>Seleccionar dirección de Envio</h3>
-                        <select class="form-control" id="" >
+                        <select class="form-control" name="direccion_envio" id="" >
                             <option></option>
-                            @foreach (Auth::user()->address as $item)
-                                <option>{{$item->direccion}} - {{$item->provincia}} - {{$item->poblacion}} - {{$item->cod_postal}} - {{$item->pais}}</option>
+                            @foreach (Auth::user()->address as $indice => $item)
+                                <option value="{{$indice}}">{{$item->direccion}} - {{$item->provincia}} - {{$item->poblacion}} - {{$item->cod_postal}} - {{$item->pais}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -40,16 +41,41 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h3>Seleccionar dirección de Facturación</h3>
-                        <select class="form-control" id="" >
+                        <select class="form-control" name="direccion_facturacion" id="" >
                             <option></option>
-                            @foreach (Auth::user()->address as $item)
-                                <option>{{$item->direccion}} - {{$item->provincia}} - {{$item->poblacion}} - {{$item->cod_postal}} - {{$item->pais}}</option>
+                            @foreach (Auth::user()->address as $indice => $item)
+                                <option value="{{$indice}}">{{$item->direccion}} - {{$item->provincia}} - {{$item->poblacion}} - {{$item->cod_postal}} - {{$item->pais}}</option>
                             @endforeach
                         </select>
                     </div>
                 </div>
                     @else
-                <h1>Aqui va un form para añadir dirección si no se ha guardado</h1>
+                    <form method="POST" action="{{route('direccion.add')}}">
+                        {{csrf_field()}}
+                        <div class="form-row">
+                            <div class="col-lg-12 mb-3">
+                                <h5>Dirección de envio</h5>
+                                <input type="text" class="form-control" name="direccion" placeholder="Dirección: Calle, Número, Piso, Letra">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-lg-6 mb-3">
+                                <input type="text" class="form-control" name="pais" placeholder="País">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" name="provincia" placeholder="Provincia">
+                            </div>
+                        </div>
+                        <div class="form-row mb-2">
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" name="poblacion" placeholder="Ciudad">
+                            </div>
+                            <div class="col-lg-6">
+                                <input type="text" class="form-control" name="codigo_postal" placeholder="Código Postal">
+                            </div>
+                        </div>
+                        <button class="btn btn-warning float-right" type="submit">Guardar</button>
+                    </form>
                 @endif
             </div>
             <div class="col-lg-6">
@@ -112,7 +138,7 @@
         <div class="row">
             <div class="col-8"></div>
             <div class="col-3" style="margin-left: 15px;">
-                <a href="" id="" class="btn float-right" style="background-color: rgb(36,168,106); color: white; width: 203px">Transferencia Bancaria</a>
+                <a href="#" onclick="transferenciaBancaria()" id="transferenciaBancaria" class="btn float-right" style="background-color: rgb(36,168,106); color: white; width: 203px">Transferencia Bancaria</a>
             </div>
         </div>
     </div>
@@ -133,5 +159,23 @@
                 // using `result.error.message`.
             });
         });
+
+        function transferenciaBancaria() {
+            console.log('hola');
+            $.ajax({
+                url: '{{route('transferencia')}}',
+                type: 'POST',
+                data: {
+                    'tipo_pago':'Transferencia Bancaria',
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function (respuesta) {
+                    console.log(respuesta);
+                },
+                error: function () {
+                    console.log("No se ha podido obtener la información");
+                }
+            });
+        }
     </script>
 @stop

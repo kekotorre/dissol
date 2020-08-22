@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
 
+use App\Libs\PedidoHelper;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -168,8 +169,10 @@ class PaypalController extends Controller
             // Enviar correo a admin
             // Redireccionar
 
-            $this->savePedido(\Session::get('cart'));
-
+            //$this->savePedido(\Session::get('cart'));
+            $cart = \Session::get('cart');
+           $numero_pedido = PedidoHelper::guardarPedido($cart, 'Paypal');
+            MensajesController::emailPedidoRealizado($numero_pedido);
             \Session::forget('cart');
 
 

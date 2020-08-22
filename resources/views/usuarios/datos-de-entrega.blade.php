@@ -38,7 +38,7 @@
                                         <input type="text" class="form-control" name="direccion" placeholder="Direccion">
                                     </div>
                                     <div class="col">
-                                        <input type="text" class="form-control" name="pais" placeholder="Pais">
+                                        <input type="text" class="form-control" name="pais" placeholder="País">
                                     </div>
                                     <div class="col">
                                         <input type="text" class="form-control" name="provincia" placeholder="Provincia">

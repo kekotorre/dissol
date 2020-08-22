@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\PedidoRealizado;
 use App\Notifications\UserRegister;
 use Illuminate\Http\Request;
 
 use App\Mensaje;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 
 class MensajesController extends Controller
@@ -113,5 +115,9 @@ class MensajesController extends Controller
 
     public static function emailRegister($user){
         Notification::send($user, new UserRegister());
+    }
+
+    public static function emailPedidoRealizado($numero_pedido){
+        Notification::send(Auth::user(), new PedidoRealizado($numero_pedido));
     }
 }

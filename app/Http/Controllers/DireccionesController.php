@@ -17,11 +17,10 @@ class DireccionesController extends Controller
         $direccion->provincia = $request->provincia;
         $direccion->poblacion = $request->poblacion;
         $direccion->cod_postal = $request->codigo_postal;
-        $direccion->user_id = $request->user_id;
+        $direccion->user_id = Auth()->user()->id;
 
         $direccion->save();
 
-        //return view('usuarios.datos-de-entrega');
         return back();
     }
 }

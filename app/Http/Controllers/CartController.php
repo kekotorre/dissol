@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Libs\PedidoHelper;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -69,9 +70,17 @@ class CartController extends Controller
      *
      */
     public function success(){
-        dd(\Session::get('cart'));
+
+        $cart = \Session::get('cart');
+        $numero_pedido = PedidoHelper::guardarPedido($cart, 'Tpv Stripe');
+
+        MensajesController::emailPedidoRealizado($numero_pedido);
+        \Session::forget('cart');
+
+
+
         return \Redirect::route('index')
-            ->with('compra', 'Compra realizada de forma correcta');
+            ->with('compra', 'Compra realizada de forma correcta, se le ha enviado un correo con los detalles del pedido. Gracias!');
     }
 
     //Add item
@@ -121,6 +130,19 @@ class CartController extends Controller
         return $total;
     }
 
-    //
+
+    public function transferenciaBancaria(Request $request){
+
+        $cart = \Session::get('cart');
+        //dd($request->tipo_pago);
+        $numero_pedido = PedidoHelper::guardarPedido($cart, $request->tipo_pago);
+
+        MensajesController::emailPedidoRealizado($numero_pedido);
+        \Session::forget('cart');
+
+        return \Redirect::route('index')
+            ->with('compra', 'Compra realizada de forma correcta, se le ha enviado un correo con los detalles del pedido. Gracias!');
+    }
+
 
 }

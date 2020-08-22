@@ -79,10 +79,6 @@ class RegisterController extends Controller
         ]);
 
         MensajesController::emailRegister($user);
-        // Send confirmation code
-        /*Mail::send('emails.confirmation_code', $data, function($message) use($data) {
-            $message->to('kekotorre@gmail.com', $data['name'])->subject('Confirma tu cuenta en Mundigraphic');
-        });*/
 
         return $user;
     }
